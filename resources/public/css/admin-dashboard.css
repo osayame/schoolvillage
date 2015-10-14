@@ -1,0 +1,58 @@
+body {
+	color:#46474C;
+}
+
+a {
+	color:#4CB573;
+}
+
+.white-link {
+	color: white;
+}
+
+.nav>li>a:hover {
+	color: #46474C;
+	text-decoration: none;
+	background-color: #4CB573;
+}
+
+.nav>li>a:active {
+	background-color: #4CB573;
+}
+
+.nav-pills > li.active > a {
+	background-color: #4CB573;
+}
+
+.tab-content input {
+	width: 50%;
+}
+
+.error {
+	padding-left: 10px;
+	float: left;
+	color: red;
+}
+
+.control-label {
+	padding-right: 50%;
+}
+
+input.pick-a-color {
+	width: 10px;
+}
+
+#exTab2 {
+	float: left;
+}
+
+#setup-instructions .popover {
+	max-width: none;
+	width: 600px;
+	height: 420px;
+}
+
+#getting-started-tabs li {
+   pointer-events: none;
+   cursor: default;
+}

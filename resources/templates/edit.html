@@ -1,0 +1,232 @@
+{% extends "home.html" %}
+{% block content %}
+<h1>{{user.firstname user.last_name}}</h1>
+<input type="hidden" name="id" id="user_id" value="{{user.id}}">
+
+<div class="panel panel-default">
+
+    <div class="panel-header">
+        <button class="btn btn-danger btn-sm pull-right flag-company" style="display:none">
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Flag
+        </button>
+        <button class="btn btn-success btn-sm pull-right unflag-company" style="display:none">
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Unflag
+        </button>
+        <button class="btn btn-warning btn-sm pull-right btn-pending" style="display:none" href="api/dbadmin/approve/{{company.id}}">
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Pending
+        </button>
+
+ 
+    </div>
+    <div class="panel-body">
+
+        <form class="form-horizontal" id="editform" role="form" method="post" action="/api/dbadmin/{{endpoint}}">
+
+            <!-- <h3>Subsidiaries</h3>
+            <div>
+                {% include "templates/subsidiaries_panel.html" %}
+                {% include "templates/add_subsidiary.html" %}
+            </div>
+            <hr> -->
+
+            <h3>Personal Info</h3>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="name" class="form-control" name="first_name" value="{{user.first_name}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="name" class="form-control" name="last_name" value="{{user.last_name}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" name="email" id="email" value="{{user.email}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="phone">Phone:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="phone" value="{{user.phone}}">
+                </div>
+            </div>
+
+
+
+            <!-- <h3>Matching Gifts</h3>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="region">City:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="region" value="{{company.city}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="matching_gift_offered">Offered:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="matching_gift_offered"
+                                                       {% if company.matching_gift_offered %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="matching_gift_offered"
+                                                       {% if not company.matching_gift_offered %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="matching_gift_offered"
+                                                       {% ifequal company.matching_gift_offered "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Retirees Eligible:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="retirees_eligible"
+                                                       {% if company.retirees_eligible %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="retirees_eligible"
+                                                       {% if not company.retirees_eligible %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="retirees_eligible"
+                                                       {% ifequal company.retirees_eligible "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Full Time Employees Eligible:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="full_time_eligible"
+                                                       {% if company.full_time_eligible %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="full_time_eligible"
+                                                       {% if not company.full_time_eligible %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="full_time_eligible"
+                                                       {% ifequal company.full_time_eligible "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Part Time Employees Eligible:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="part_time_eligible"
+                                                       {% if company.part_time_eligible %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="part_time_eligible"
+                                                       {% if not company.part_time_eligible %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="part_time_eligible"
+                                                       {% ifequal company.part_time_eligible "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Minimum Matched:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="minimum_matched" value="{{company.minimum_matched}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Maximum Matched:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="maximum_matched" value="{{company.maximum_matched}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Match Ratio:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="ratio" value="{{company.ratio}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Matching Gift Process:</label>
+
+                <div class="col-sm-10">
+                    <textarea name="matching_gift_process" class="tinymce" style="height:50%">{{company.matching_gift_process}}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Eligible Organizations:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="arts_and_cultural"
+                                                          {% if company.arts_and_cultural %} checked {% endif %}>Arts/Cultural</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="civic_community"
+                                                          {% if company.civic_community %} checked {% endif %}>Civic/Community</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="environmental"
+                                                          {% if company.environmental %} checked {% endif %}>Environmental</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="health_human_services"
+                                                          {% if company.health_human_services     %} checked {% endif %}>Health and Human Services</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="higher_ed"
+                                                          {% if company.higher_ed %} checked {% endif %}>Higher Ed</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="k12"
+                                                          {% if company.k12 %} checked {% endif %}>K12</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Forms:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="url_forms" value="{{company.url_forms}}">
+                    <label class="checkbox-inline"><input class="category" type="checkbox" name="intranet_forms"
+                                                          {% if company.intranet_forms %} checked {% endif %}>Intranet?</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Guidelines:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="url_guidelines" value="{{company.url_guidelines}}">
+                    <label class="checkbox-inline"><input class="category" type="checkbox" name="intranet_guidelines"
+                                                          {% if company.intranet_guidelines %} checked {% endif %}>Intranet?</label>
+                </div>
+            </div>
+
+
+            <h3>Volunteer Grants</h3>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Offered:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="volunteer_grant_offered"
+                                                       {% if company.volunteer_grant_offered %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="volunteer_grant_offered"
+                                                       {% if not company.volunteer_grant_offered %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="volunteer_grant_offered"
+                                                       {% ifequal company.volunteer_grant_offered "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Volunteer Grant Process:</label>
+
+                <div class="col-sm-10">
+                    <textarea name="volunteer_grant_process" class="tinymce" style="height:50%">{{company.volunteer_grant_process}}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Minimum Hours Required:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="volunteer_minimum_hours_required" value="{{company.volunteer_minimum_hours_required}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="phone">Corporate Donations:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="corporate_donation_offered" value="{{company.corporate_donation_offered}}">
+                </div>
+            </div>
+
+        -->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary btn-update">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+{% endblock %}

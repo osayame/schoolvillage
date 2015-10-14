@@ -1,0 +1,21 @@
+.subsidiary
+{
+  overflow:hidden;
+  position: relative;
+  display: block;
+  padding: 3px 5px;
+  margin-left: 21px;
+  background-color: #fff;
+  border: 0px solid #ddd;
+}
+
+.add
+{
+  overflow:hidden;
+  position: relative;
+  display: block;
+  padding: 3px 5px;
+  margin-left: 35px;
+  background-color: #fff;
+  border: 0px solid #ddd;
+}

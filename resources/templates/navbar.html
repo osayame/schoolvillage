@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand btn btn-default btn-sm btn-home" href="#">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Village Admin</a>
+        </div>
+        {% ifequal "" "" %}
+        <div class="collapse navbar-collapse" id="">
+            <form class="navbar-form" id="searchForm" name="searchForm" action="/api/dbadmin/search/" method="post">
+                <div class="typeahead-container">
+                    <div class="typeahead-field">
+                        <span class="typeahead-query">
+                            <input id="company-search" name="query" type="search" placeholder="Search"
+                                   autocomplete="off" required >
+                        </span>
+                        <span class="typeahead-button">
+                            <button type="submit">
+                                <i class="typeahead-search-icon"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% endifequal %}
+    </div>
+</nav>
