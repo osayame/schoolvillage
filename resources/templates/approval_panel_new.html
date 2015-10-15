@@ -1,0 +1,222 @@
+<h1>Proposed</h1>
+<input type="hidden" name="id" id="version_id" value="{{new.id}}">
+<div class="panel panel-default">
+    <div class="panel-header">
+        <form style="display:inline" role="form" method="get" action="">
+            <button type="" class="btn btn-warning btn-sm pull-right btn-reject-version">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Reject
+            </button>
+            <button type="" class="btn btn-success btn-sm pull-right btn-approve-version">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Approve
+            </button>
+
+        </form>
+    </div>
+    <div class="panel-body">
+        <div class="form-group {% ifequal company.company_name new.data.company_name %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+            <label class="control-label col-sm-2">Company Name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="company_name" id="company_name" value="{{new.data.company_name}}">
+            </div>
+        </div>
+        <br><br>
+        <div class="{% ifequal company.subsidiaries new.data.subsidiaries %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+            <h4>Subsidiaries</h4>
+            <div>
+                {% include "subsidiaries_panel.html" %}
+            </div>
+            <hr>
+        </div>
+        <hr>
+        <form class="form-horizontal" id="company">
+
+
+            <h3>Contact Info</h3>
+            <div class="form-group {% ifequal company.corporate_contact_name new.data.corporate_contact_name %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="corporate_contact_name">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="corporate_contact_name" id="corporate_contact_name" value="{{new.data.corporate_contact_name}}">
+                </div>
+            </div>
+            <div class="form-group {% ifequal company.corporate_contact_email new.data.corporate_contact_email %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="corporate_contact_email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" name="corporate_contact_email" id="corporate_contact_email" value="{{new.data.corporate_contact_email}}">
+                </div>
+            </div>
+            <div class="form-group {% ifequal company.corporate_contact_phone new.data.corporate_contact_phone %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="corporate_contact_phone">Phone:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="corporate_contact_phone" value="{{new.data.corporate_contact_phone}}">
+                </div>
+            </div>
+
+            <h3>Matching Gifts</h3>
+
+            <div class="form-group {% ifequal company.matching_gift_offered new.data.matching_gift_offered %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="matching_gift_offered">Offered:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="matching_gift_offered"
+                                                       {% if company.matching_gift_offered %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="matching_gift_offered"
+                                                       {% if not company.matching_gift_offered %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="matching_gift_offered"
+                                                       {% ifequal company.matching_gift_offered "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.retirees_eligible new.data.retirees_eligible %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="">Retirees Eligible:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="retirees_eligible"
+                                                       {% if company.retirees_eligible %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="retirees_eligible"
+                                                       {% if not company.retirees_eligible %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="retirees_eligible"
+                                                       {% ifequal company.retirees_eligible "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.full_time_eligible new.data.full_time_eligible %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="">Full Time Employees Eligible:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="full_time_eligible"
+                                                       {% if company.full_time_eligible %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="full_time_eligible"
+                                                       {% if not company.full_time_eligible %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="full_time_eligible"
+                                                       {% ifequal company.full_time_eligible "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.part_time_eligible new.data.part_time_eligible %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="">Part Time Employees Eligible:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="part_time_eligible"
+                                                       {% if company.part_time_eligible %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="part_time_eligible"
+                                                       {% if not company.part_time_eligible %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="part_time_eligible"
+                                                       {% ifequal company.part_time_eligible "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.minimum_matched new.data.minimum_matched %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Minimum Matched:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="minimum_matched" value="{{new.data.minimum_matched}}">
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.maximum_matched new.data.maximum_matched %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Maximum Matched:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="maximum_matched" value="{{new.data.maximum_matched}}">
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.ratio new.data.ratio %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Match Ratio:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="ratio" value="{{new.data.ratio}}">
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.matching_gift_process new.data.matching_gift_process %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Matching Gift Process:</label>
+
+                <div class="col-sm-10">
+                    <textarea name="matching_gift_process" class="tinymce" style="height:50%">{{new.data.matching_gift_process}}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="">Eligible Organizations:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="checkbox-inline
+                                  {% ifequal company.arts_and_cultural new.data.arts_and_cultural %} {% else %} bs-callout-label {%endifequal%}">
+                        <input class="category" type="checkbox" value="" name="arts_and_cultural"
+                               {% if new.data.arts_and_cultural %} checked {% endif %}>Arts/Cultural</label>
+                    <label class="checkbox-inline
+                                  {% ifequal company.civic_community new.data.civic_community %} {% else %}bs-callout-label {%endifequal%}">
+                        <input class="category" type="checkbox" value="" name="civic_community"
+                               {% if new.data.civic_community %} checked {% endif %}>Civic/Community</label>
+                    <label class="checkbox-inline
+                                  {% ifequal company.environmental new.data.environmental %} {% else %}bs-callout-label{%endifequal%}">
+                        <input class="category" type="checkbox" value="" name="environmental"
+                               {% if new.data.environmental %} checked {% endif %}>Environmental</label>
+                    <label class="checkbox-inline
+                                  {% ifequal company.health_human_services new.data.health_human_services %} {% else %}bs-callout-label{%endifequal%}">
+                        <input class="category" type="checkbox" value="" name="health_human_services"
+                               {% if new.data.health_human_services     %} checked {% endif %}>Health and Human Services</label>
+                    <label class="checkbox-inline
+                                  {% ifequal company.higher_ed new.data.higher_ed %} {% else %}bs-callout-label{%endifequal%}">
+                        <input class="category" type="checkbox" value="" name="higher_ed"
+                               {% if new.data.higher_ed %} checked {% endif %}>Higher Ed</label>
+                    <label class="checkbox-inline
+                                  {% ifequal company.k12 new.data.k12 %} {% else %}bs-callout-label{%endifequal%}">
+                        <input class="category" type="checkbox" value="" name="k12"
+                               {% if new.data.k12 %} checked {% endif %}>K12</label>
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.url_forms new.data.url_forms %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Forms:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="url_forms" value="{{new.data.url_forms}}">
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.url_guidelines new.data.url_guidelines %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Guidelines:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="url_guidelines" value="{{new.data.url_guidelines}}">
+                </div>
+            </div>
+
+            <h3>Volunteer Grants</h3>
+
+            <div class="form-group {% ifequal company.volunteer_grant_offered new.data.volunteer_grant_offered %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2" for="">Offered:</label>
+                <div class="col-sm-10 btn-group" data-toggle="">
+                    <label class="radio-inline"><input type="radio" value="true" name="volunteer_grant_offered"
+                                                       {% if company.volunteer_grant_offered %} checked {% endif %}>Yes</label>
+                    <label class="radio-inline"><input type="radio" value="false" name="volunteer_grant_offered"
+                                                       {% if not company.volunteer_grant_offered %} checked {% endif %}>No</label>
+                    <label class="radio-inline"><input type="radio" value="nil" name="volunteer_grant_offered"
+                                                       {% ifequal company.volunteer_grant_offered "" %} checked {% endifequal %}>Unknown</label>
+                </div>
+            </div>
+
+
+            <div class="form-group {% ifequal company.volunteer_grant_process new.data.volunteer_grant_process %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Volunteer Grant Process:</label>
+
+                <div class="col-sm-10">
+                    <textarea name="volunteer_grant_process" class="tinymce" style="height:50%">{{new.data.volunteer_grant_process}}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group {% ifequal company.volunteer_minimum_hours_required new.data.volunteer_minimum_hours_required %} {% else %}bs-callout bs-callout-danger {%endifequal%}">
+                <label class="control-label col-sm-2">Minimum Hours Required:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="volunteer_minimum_hours_required" value="{{new.data.volunteer_minimum_hours_required}}">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% include "reject_proposed_modal.html" %}
+
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#company input").prop("disabled", true);
+            $('.panel-body .btn').each(function(){
+                $(this).addClass('disabled');
+            });
+            $('a').on('click.myDisable', function() { return false; });
+        });
+    </script>
+</form>

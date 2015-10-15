@@ -1,0 +1,15 @@
+{% extends "admin/embed.html" %}
+{% block step %}
+
+<h1 class="page-header">Backup iFrame Option</h1>
+
+<p>Some software platforms strip Javascript or CSS from user-entered input, causing our plugin to not appear correctly. If you have any issues with the standard code, try using the following iFrame code where you want our plugin to appear.</p>
+	<pre><code tabindex="1" class="text-box text-box-info focus-to-select plugin-block">&lt;iframe src=&quot;https://doublethedonation.com/api/iframe/{{api_key}}&quot; height=&quot;500&quot; width=&quot;100%&quot;&gt;&lt;/iframe&gt; </code></pre>
+
+
+<ul class="pager">
+	<a href="/members/embed/complete" class="btn btn-success"><span class="fa fa-check"></span> Complete Setup</a>
+</ul>
+
+
+{% endblock %}

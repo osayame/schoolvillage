@@ -1,0 +1,40 @@
+{% extends "admin/wizard.html" %}
+
+{% block step %}
+
+<form id="contactForm" method="post" class="form-horizontal">
+
+	<div class="text-center">
+		<h3><i class="fa fa-user"></i>
+			Provide the Public Contact Person
+		</h3>
+		<h5 class="help-block">This information appears on your matching gift page. This is the person donors will contact to ask questions.</h5>
+		<br>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label" for="contact_name">Name</label>
+		<div class="controls">
+			<input type="text" id="contact_name" name="contact_name" value="{{organization.contact_name}}" class="form-control required">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label" for="contact_email">Email</label>
+		<div class="controls">
+			<input type="text" id="contact_email" name="contact_email" value="{{organization.contact_email}}" class="form-control required">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label" for="contact_phone">Phone</label>
+		<div class="controls">
+			<input type="text" id="contact_phone" name="contact_phone" value="{{organization.contact_phone}}" class="form-control required">
+		</div>
+	</div>
+
+	{% include "admin/pager.html" %}
+
+</form>
+
+{% endblock %}

@@ -12,10 +12,11 @@
 (defn about-page []
   (layout/render "about.html"))
 
-(defn misc-page []
-  (layout/render "misc.html" {:user (db/get-user {:id 1})}))
+(defn edit-route [request]
+  (let [user-id (get-in request [:params :user-id])]
+    (layout/render "edit.html" {:endpoint (str "update/" user-id) :user (db/get-user 1)})))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
   (GET "/about" [] (about-page))
-  (GET "/misc" [] (misc-page)))
+  (GET "/edit/:user-id" [] edit-route))

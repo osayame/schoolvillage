@@ -1,0 +1,31 @@
+{% extends "admin/index.html" %}
+{% block main-container %}
+<h1 class="page-header">Advanced Settings</h1>
+<br>
+{% if success %}
+<div class="alert alert-success" role="alert">Settings Saved</div>
+{% endif %}
+<ul class="nav nav-tabs">
+
+    <!--  <li class="active"><a href="#tab1default" data-toggle="tab">Page Design</a></li>
+     <li><a href="#tab3default" data-toggle="tab">Contact Info</a></li>
+     <li><a href="#tab4default" data-toggle="tab">Organization Info</a></li>
+   -->
+    {% ifequal tier "pro" %}
+    <li {% if organization.url|empty? %} class="active" {%endif%}>
+        <a href="#tab1default" data-toggle="tab">Plugin Settings</a>
+    </li>
+    {%endifequal%}
+    {% if not-empty? organization.url %}
+    <li ><a href="#tab2default" data-toggle="tab">URL Settings</a></li>
+    {% endif %}
+
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade {% if organization.url|empty? %} in active {%endif%}" id="tab1default">
+        <br>
+        {% include "admin/settings_plugin.html" %}
+    </div>
+</div>
+
+{% endblock %}

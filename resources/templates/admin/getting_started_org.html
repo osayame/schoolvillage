@@ -1,0 +1,54 @@
+{% extends "admin/wizard.html" %}
+
+{% block step %}
+
+<form id="organizationForm" method="post" class="form-horizontal">
+
+    <div class="text-center">
+        <h3><i class="fa fa-sitemap"></i>
+            Provide Your Organization's Information
+        </h3>
+        <h5 class="help-block">We'll show this information on your public page</h5>
+        <br>
+    </div>
+
+    <div class="form-group">
+
+        <label class="control-label">Organization Name</label>
+        <div class="controls">
+            <input type="text" name="public_organization" value="{{organization.public_organization}}" class="form-control required">
+            {% if errors.public_organization %}
+            <div class="alert alert-danger">{{errors.public_organization|join}}</div>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label class="control-label">Organization Website <strong>(include http:// or https://)</strong></label>
+        <div class="controls">
+            <input type="text" name="website" value="{{organization.website}}" id="urlfield" class="form-control required">
+            {% if errors.website %}
+            <div class="alert alert-danger">{{errors.website|join}}</div>
+            {% endif %}
+
+            <span class="help-block">This can be your organization's website homepage, ways-to-give page, or donation page.</span>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+
+        <label class="control-label">Nonprofit Tax ID</label>
+        <div class="controls">
+            <input type="text" name="tax_id" value="{{organization.tax_id}}" class="form-control required">
+            <span class="help-block">Your organization's Tax ID number is often required by companies when donors go to submit matching gift requests. Don't worry about sharing this... it's publicly accessible information available through IRS records, Guidestar, Charity Navigator, and many other sources.</span>
+        </div>
+    </div>
+
+    {% include "admin/pager.html" %}
+
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!--
+<h3>
+	Embedding Options
+</h3>
+
+<ul class="nav nav-pills">
+	<li class="active"><a href="#tab1default" data-toggle="tab">Recommended Option</a></li>
+	<li><a href="#tab2default" data-toggle="tab">Backup Option</a></li>
+	<li><a href="#tab3default" data-toggle="tab">Platform Integrations</a></li>
+</ul>
+
+<br>
+<div class="tab-pane fade in active" id="tab1default">
+	{% include "admin/embed_standard.html" %}
+</div>
+<div class="tab-pane fade" id="tab2default">
+	{% include "admin/embed_iframe.html" %}
+</div>
+<div class="tab-pane fade" id="tab3default">
+	{% include "admin/embed_platforms_partial.html" %}
+</div>
+-->
+
+<h3>Recommended Option</h3>
+
+{% include "admin/embed_standard_partial.html" %}
+
+<hr>
+
+<h3>Backup iFrame Option</h3>
+
+{% include "admin/embed_iframe_partial.html" %}
+
+<hr>
+
+<h3>Platform Integrations</h3>
+
+{% include "admin/embed_integrations_partial.html" %}
+{% include "admin/embed_platforms_partial.html" %}
+

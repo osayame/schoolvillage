@@ -1,0 +1,21 @@
+{% extends "admin/index.html" %}
+{% block main-container %}
+
+
+<div class="panel panel-default" style="border: 0px; padding-top: 40px">
+	<input type="hidden" id="organization_id" value="{{organization.id}}">
+	<input type="hidden" id="organization_url" value="{{organization.url}}">
+
+
+	<div class="panel panel-heading">
+		<h4><i class="fa fa-cloud-download fa-fw"></i> Plan and Billing </h4>
+	</div>
+	<div class="panel panel-body">
+		<div class="row">
+
+		</div>
+	</div>
+</div>
+
+<!-- <a href="#" class="btn btn-xs btn-danger pull-right">Skip the setup process...</a> -->
+{% endblock %}

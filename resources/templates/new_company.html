@@ -1,76 +1,53 @@
 {% extends "home.html" %}
 {% block content %}
-<h1>{{user.firstname user.last_name}}</h1>
-<input type="hidden" name="id" id="user_id" value="{{user.id}}">
+<h1>New Company</h1>
+<form class="form-horizontal" role="form" method="post" action="/api/dbadmin/add">
+    <div class="panel panel-default">
+        <div class="panel-body">
 
-<div class="panel panel-default">
+            <input type="hidden" name="id" placeholder="{{company.id}}">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Company Name:</label>
+                <div class="col-sm-10">
+                    <input type="name" class="form-control" name="company_name" placeholder="Loco Inc.">
+                </div>
+            </div>
 
-    <div class="panel-header">
-        <button class="btn btn-danger btn-sm pull-right flag-company" style="display:none">
-            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Flag
-        </button>
-        <button class="btn btn-success btn-sm pull-right unflag-company" style="display:none">
-            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Unflag
-        </button>
-        <button class="btn btn-warning btn-sm pull-right btn-pending" style="display:none" href="api/dbadmin/approve/{{company.id}}">
-            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Pending
-        </button>
-
-        {% include "add_flag_modal.html" %}
-        {% include "remove_flag_modal.html" %}
-        {% include "flagged_alert.html" %}
-        {% include "pending_alert.html" %}
-
-    </div>
-    <div class="panel-body">
-
-        <form class="form-horizontal" id="editform" role="form" method="post" action="/api/dbadmin/{{endpoint}}">
-
-            <!-- <h3>Subsidiaries</h3>
+            <h3>Subsidiaries</h3>
             <div>
                 {% include "subsidiaries_panel.html" %}
                 {% include "add_subsidiary.html" %}
             </div>
-            <hr> -->
+            <hr>
 
-            <h3>Personal Info</h3>
+            <h3>Contact Info</h3>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="name">First Name:</label>
+                <label class="control-label col-sm-2" for="">Name:</label>
                 <div class="col-sm-10">
-                    <input type="name" class="form-control" name="first_name" value="{{user.first_name}}">
+                    <input type="text" class="form-control" name="corporate_contact_name" id="corporate_contact_name" placeholder="John Loco">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="corporate_contact_email">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" name="corporate_contact_email" id="corporate_contact_email" placeholder="john@loco.com">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="corporate_contact_phone">Phone:</label>
+                <div class="col-sm-10">
+                    <input type="tel" class="form-control" name="corporate_contact_phone" placeholder="444-909-5555">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="name">Last Name:</label>
+                <label class="control-label col-sm-2" for="region">Region:</label>
                 <div class="col-sm-10">
-                    <input type="name" class="form-control" name="last_name" value="{{user.last_name}}">
+                    <input type="text" class="form-control" name="region" value="{{company.region}}">
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="email">Email:</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" name="email" id="email" value="{{user.email}}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="phone">Phone:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="phone" value="{{user.phone}}">
-                </div>
-            </div>
-
-
-
-            <!-- <h3>Matching Gifts</h3>
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="region">City:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="region" value="{{company.city}}">
-                </div>
-            </div>
+            <h3>Matching Gifts</h3>
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="matching_gift_offered">Offered:</label>
@@ -123,21 +100,21 @@
             <div class="form-group">
                 <label class="control-label col-sm-2">Minimum Matched:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="minimum_matched" value="{{company.minimum_matched}}">
+                    <input type="text" class="form-control" name="minimum_matched" placeholder="$25">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Maximum Matched:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="maximum_matched" value="{{company.maximum_matched}}">
+                    <input type="text" class="form-control" name="maximum_matched" placeholder="$20000">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Match Ratio:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="ratio" value="{{company.ratio}}">
+                    <input type="text" class="form-control" name="ratio" placeholder="2:1">
                 </div>
             </div>
 
@@ -145,43 +122,33 @@
                 <label class="control-label col-sm-2">Matching Gift Process:</label>
 
                 <div class="col-sm-10">
-                    <textarea name="matching_gift_process" class="tinymce" style="height:50%">{{company.matching_gift_process}}</textarea>
+                    <textarea name="matching_gift_process" class="tinymce" style="height:50%"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="">Eligible Organizations:</label>
                 <div class="col-sm-10 btn-group" data-toggle="">
-                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="arts_and_cultural"
-                                                          {% if company.arts_and_cultural %} checked {% endif %}>Arts/Cultural</label>
-                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="civic_community"
-                                                          {% if company.civic_community %} checked {% endif %}>Civic/Community</label>
-                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="environmental"
-                                                          {% if company.environmental %} checked {% endif %}>Environmental</label>
-                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="health_human_services"
-                                                          {% if company.health_human_services     %} checked {% endif %}>Health and Human Services</label>
-                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="higher_ed"
-                                                          {% if company.higher_ed %} checked {% endif %}>Higher Ed</label>
-                    <label class="checkbox-inline"><input class="category" type="checkbox" value="" name="k12"
-                                                          {% if company.k12 %} checked {% endif %}>K12</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="arts_and_cultural">Arts/Cultural</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="civic_community">Civic/Community</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="environmental">Environmental</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="health_human_services">Health and Human Services</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="higher_ed">Higher Ed</label>
+                    <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="k12">K12</label>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Forms:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="url_forms" value="{{company.url_forms}}">
-                    <label class="checkbox-inline"><input class="category" type="checkbox" name="intranet_forms"
-                                                          {% if company.intranet_forms %} checked {% endif %}>Intranet?</label>
+                    <input type="text" class="form-control" name="url_forms" placeholder="loco.com/matching">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Guidelines:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="url_guidelines" value="{{company.url_guidelines}}">
-                    <label class="checkbox-inline"><input class="category" type="checkbox" name="intranet_guidelines"
-                                                          {% if company.intranet_guidelines %} checked {% endif %}>Intranet?</label>
+                    <input type="text" class="form-control" name="url_guidelines" placeholder="loco.com/matching-guidelines">
                 </div>
             </div>
 
@@ -205,32 +172,32 @@
                 <label class="control-label col-sm-2">Volunteer Grant Process:</label>
 
                 <div class="col-sm-10">
-                    <textarea name="volunteer_grant_process" class="tinymce" style="height:50%">{{company.volunteer_grant_process}}</textarea>
+                    <textarea name="volunteer_grant_process" class="tinymce" style="height:50%"></textarea>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Minimum Hours Required:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="volunteer_minimum_hours_required" value="{{company.volunteer_minimum_hours_required}}">
+                    <input type="text" class="form-control" name="volunteer_minimum_hours_required" placeholder="20">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-2" for="phone">Corporate Donations:</label>
+                <label class="control-label col-sm-2" for="corporate_donations">Corporate Donations:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="corporate_donation_offered" value="{{company.corporate_donation_offered}}">
+                    <input type="text" class="form-control" name="corporate_donations" value="{{company.corporate_donations_offered}}">
                 </div>
             </div>
 
-        -->
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary btn-update">Update</button>
+        </div>
+        <div class="panel-footer">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Add Company</button>
+                </div>
             </div>
         </div>
-    </form>
-</div>
-</div>
-
+    </div>
+</form>
 {% endblock %}

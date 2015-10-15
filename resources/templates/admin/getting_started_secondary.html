@@ -1,0 +1,31 @@
+{% extends "admin/wizard.html" %}
+
+{% block step %}
+
+<form id="secondaryForm" method="post" class="form-horizontal"  data-toggle="validator">
+	<div class="text-center">
+		<h3><i class="fa fa-user-plus"></i>
+			Provide us with a Secondary Contact
+		</h3>
+		<h5 class="help-block">This will be the point of contact if we can't reach you or if you leave your organization.</h5>
+		<br>
+	</div>
+	<div class="form-group">
+		<label class="control-label" style="padding-right:50%" for="contact-name2">Secondary Contact Name</label>
+		<div class="controls">
+			<input type="text" name="contact_name2" value="{{organization.contact_name2}}" class="form-control required">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label" style="padding-right:50%" for="contact-email2">Secondary Contact Email</label>
+		<div class="controls">
+			<input type="text" name="contact_email2" value="{{organization.contact_email2}}" id="emailfield" class="form-control required">
+		</div>
+	</div>
+
+
+	{% include "admin/pager.html" %}
+</form>
+
+{% endblock %}

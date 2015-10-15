@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Pending Approval </h3>
+    </div>
+    <div class="panel-body">
+        <div class="list-group">
+            {% for user in pending %}
+            <a href="/api/dbadmin/approve/{{user.id}}" class="list-group-item">
+                <span class="badge">approve</span>
+                <i class="fa fa-fw fa-flag-o"></i> {{user.first_name}} {{user.last_name}}
+            </a>
+            {% endfor %}
+        </div>
+
+    </div>
+<!--     <div class="panel-footer" style="background-color:white">
+        <div class="text-right">
+            <a href="#">View All <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div> -->
+</div>

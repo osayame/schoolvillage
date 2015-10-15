@@ -1,0 +1,9 @@
+<div class="col-md-12">
+    <ul class="list-group">
+        {% for subsidiary in company.subsidiaries %}
+        <li class="list-group-item subsidiary">
+            <input name="subsidiaries[]" class="form-control" value="{{subsidiary}}" />
+        </li>
+        {% endfor %}
+    </ul>
+</div>

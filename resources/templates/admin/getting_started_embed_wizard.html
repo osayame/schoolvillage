@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-md-12" id="setup-instructions">
+<!--
+		<div class="col-md-6 pull-left">
+			<button id="send-developer" class="btn btn-block btn-primary">
+				Send instructions to your webmaster
+			</button>
+		</div>
+		-->
+		{% include "admin/embed_panel_partial.html" %}
+	</div>
+	<!-- <div class="media media-right" style="padding-top: 100px;">
+		<img class="media-object img-responsive" src="https://doublethedonation.com/wp-content/uploads/2014/11/matching-gift-service-embed.png" style="width:100%; margin-right: 100px; clear:both;">
+	</div> -->
+</div>
+
+<br>
+
+
+<br>
+<hr>
+
+
+{% if not organization.setup_complete %}
+<div class="text-center">
+	<a href="/members/complete_setup" class="btn btn-green btn-submit setup-complete">
+		Continue
+	</a>
+</div>
+{%endif%}
+
+{% include "admin/send_code_modal.html" %}
+

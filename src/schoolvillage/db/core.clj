@@ -19,7 +19,7 @@
 (conman/bind-connection *conn* "sql/queries.sql")
 
 (defn get-user [id]
-  (first (get-user {:id (Integer. id)})))
+  (first (find-user {:id (Integer. id)})))
 
 (def pool-spec
   {:adapter    :postgresql

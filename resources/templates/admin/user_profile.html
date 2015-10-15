@@ -1,0 +1,15 @@
+{% extends "admin/index.html" %}
+{% block main-container %}
+
+<div class="panel panel-default" style="border: 0px; padding-top: 40px">
+	<input type="hidden" id="organization_id" value="{{organization.id}}">
+	<input type="hidden" id="organization_url" value="{{organization.url}}">
+
+	<div class="panel panel-heading">
+		<h4><i class="fa fa-user fa-fw"></i> Your Profile </h4>
+	</div>
+	<div class="panel-body">
+		{% include "admin/user_profile_info_partial.html" %}	
+	</div>
+</div>
+{% endblock %}

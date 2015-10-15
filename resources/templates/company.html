@@ -1,76 +1,47 @@
 {% extends "home.html" %}
 {% block content %}
-<h1>{{user.firstname user.last_name}}</h1>
-<input type="hidden" name="id" id="user_id" value="{{user.id}}">
+<h1>{{company.company_name}}</h1>
+<input type="hidden" name="id" id="company_id" value="{{company.id}}">
 
 <div class="panel panel-default">
-
     <div class="panel-header">
-        <button class="btn btn-danger btn-sm pull-right flag-company" style="display:none">
-            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Flag
-        </button>
-        <button class="btn btn-success btn-sm pull-right unflag-company" style="display:none">
-            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Unflag
-        </button>
-        <button class="btn btn-warning btn-sm pull-right btn-pending" style="display:none" href="api/dbadmin/approve/{{company.id}}">
-            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Pending
-        </button>
-
-        {% include "add_flag_modal.html" %}
-        {% include "remove_flag_modal.html" %}
-        {% include "flagged_alert.html" %}
-        {% include "pending_alert.html" %}
-
+        <form style="display:inline" role="form" method="get" action="/api/dbadmin/edit/{{company.id}}">
+            <button type="" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+            </button>
+        </form>
     </div>
     <div class="panel-body">
 
-        <form class="form-horizontal" id="editform" role="form" method="post" action="/api/dbadmin/{{endpoint}}">
+        <h3>Subsidiaries</h3>
+        <div>
+            {% include "subsidiaries_panel.html" %}
+        </div>
+        <hr>
+        <form class="form-horizontal" id="company" role="form" method="post" action="/api/dbadmin/update/{{company.id}}">
 
-            <!-- <h3>Subsidiaries</h3>
-            <div>
-                {% include "subsidiaries_panel.html" %}
-                {% include "add_subsidiary.html" %}
-            </div>
-            <hr> -->
 
-            <h3>Personal Info</h3>
+            <h3>Contact Info</h3>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="name">First Name:</label>
+                <label class="control-label col-sm-2" for="corporate_contact_name">Name:</label>
                 <div class="col-sm-10">
-                    <input type="name" class="form-control" name="first_name" value="{{user.first_name}}">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="name">Last Name:</label>
-                <div class="col-sm-10">
-                    <input type="name" class="form-control" name="last_name" value="{{user.last_name}}">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="email">Email:</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" name="email" id="email" value="{{user.email}}">
+                    <input type="text" class="form-control" name="corporate_contact_name" id="corporate_contact_name" value="{{company.corporate_contact_name}}">
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="phone">Phone:</label>
+                <label class="control-label col-sm-2" for="corporate_contact_email">Email:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="phone" value="{{user.phone}}">
+                    <input type="email" class="form-control" name="corporate_contact_email" id="corporate_contact_email" value="{{company.corporate_contact_email}}">
                 </div>
             </div>
-
-
-
-            <!-- <h3>Matching Gifts</h3>
-
             <div class="form-group">
-                <label class="control-label col-sm-2" for="region">City:</label>
+                <label class="control-label col-sm-2" for="corporate_contact_phone">Phone:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="region" value="{{company.city}}">
+                    <input type="text" class="form-control" name="corporate_contact_phone" value="{{company.corporate_contact_phone}}">
                 </div>
             </div>
+
+            <h3>Matching Gifts</h3>
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="matching_gift_offered">Offered:</label>
@@ -171,8 +142,6 @@
                 <label class="control-label col-sm-2">Forms:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="url_forms" value="{{company.url_forms}}">
-                    <label class="checkbox-inline"><input class="category" type="checkbox" name="intranet_forms"
-                                                          {% if company.intranet_forms %} checked {% endif %}>Intranet?</label>
                 </div>
             </div>
 
@@ -180,8 +149,6 @@
                 <label class="control-label col-sm-2">Guidelines:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="url_guidelines" value="{{company.url_guidelines}}">
-                    <label class="checkbox-inline"><input class="category" type="checkbox" name="intranet_guidelines"
-                                                          {% if company.intranet_guidelines %} checked {% endif %}>Intranet?</label>
                 </div>
             </div>
 
@@ -216,21 +183,17 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="phone">Corporate Donations:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="corporate_donation_offered" value="{{company.corporate_donation_offered}}">
-                </div>
-            </div>
-
-        -->
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary btn-update">Update</button>
-            </div>
         </div>
-    </form>
-</div>
-</div>
+    </div>
 
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            $("#company input").prop("disabled", true);
+            $('.panel-body .btn').each(function(){
+                $(this).addClass('disabled');
+            });
+            $('a').on('click.myDisable', function() { return false; });
+        });
+    </script>
+</form>
 {% endblock %}

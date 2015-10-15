@@ -1,0 +1,27 @@
+{% extends "admin/index.html" %}
+{% block main-container %}
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Your Hosted Page URL</h1>
+
+		<div class="row">
+			<div class="col-md-12 center">
+				<div class="panel panel-green">
+					<div class="panel-heading">
+						Your matching gift page on our servers:
+					</div>
+					<div class="panel-body">
+						<h5>https://doublethedonation.com/<b>{{organization.url}}</b></h5>
+						<hr>
+						<p>Include the above URL throughout your fundraising and marketing initiatives. Your customized page will provide your donors and volunteers with all the information they need to submit matching gifts and volunteer grants.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+
+{% endblock %}

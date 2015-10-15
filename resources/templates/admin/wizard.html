@@ -1,0 +1,109 @@
+{% extends "admin/index.html" %}
+
+{% block main-container %}
+<div id="rootwizard" class="wizard">
+  <div class="wizard-inner">
+    <div class="connecting-line"></div>
+    <ul class="nav nav-tabs" role="tablist">
+
+      <li role="presentation"
+          class="{%ifequal step 0 %}active{%endifequal%}{%if step > 0 %}past{%endif%}">
+        <a href="/members/editor">
+                            <span class="round-tab">
+                                <i class="fa fa-hourglass-1"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 1 %}active{%endifequal%}{%if step > 1 %}past{%endif%}">
+        <a href="/members/editor/url">
+                            <span class="round-tab">
+                                <i class="fa fa-globe"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 2 %}active{%endifequal%}{%if step > 2 %}past{%endif%}">
+        <a href="/members/editor/organization">
+                            <span class="round-tab">
+                                <i class="fa fa-sitemap"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 3 %}active{%endifequal%}{%if step > 3 %}past{%endif%}">
+        <a href="/members/editor/address">
+                            <span class="round-tab">
+                                <i class="fa fa-map-marker"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 4 %}active{%endifequal%}{%if step > 4 %}past{%endif%}">
+        <a href="/members/editor/contact">
+                            <span class="round-tab">
+                                <i class="fa fa-user"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 5 %}active{%endifequal%}{%if step > 5 %}past{%endif%}">
+        <a href="/members/editor/design">
+                            <span class="round-tab">
+                                <i class="fa fa-wrench"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 6 %}active{%endifequal%}{%if step > 6 %}past{%endif%}">
+        <a href="/members/editor/description">
+                            <span class="round-tab">
+                                <i class="fa fa-pencil"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 7 %}active{%endifequal%}{%if step > 7 %}past{%endif%}">
+        <a href="/members/editor/secondary">
+                            <span class="round-tab">
+                                <i class="fa fa-user-plus"></i>
+                            </span>
+        </a>
+      </li>
+
+      <li role="presentation"
+          class="{%ifequal step 8 %}active{%endifequal%}{%if step > 8 %}past{%endif%}">
+        <a href="/members/editor/complete">
+                            <span class="round-tab">
+                                <i class="fa fa-check"></i>
+                            </span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="tab-pane">
+    {% block step %}
+
+    <h3 class="text-center"><i class="fa fa-gear-o"></i> Welcome!</h3>
+    <p class="help-block">Let's set up your matching gift page! You'll choose your personalized URL, provide contact information for donors, and customize the look of the page.</p>
+    <div class="text-center"><a href="/members/editor/url" type="submit" class="btn btn-success">Let's Begin <span class="fa fa-arrow-circle-o-right"></span></a></div>
+
+    <br>
+    <img class="img-responsive center-block" src="https://doublethedonation.com/wp-content/uploads/2014/11/matching-gift-host.png">
+
+
+    {% endblock %}
+  </div>
+
+</div>
+
+{% endblock %}
