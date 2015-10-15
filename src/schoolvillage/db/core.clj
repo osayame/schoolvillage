@@ -1,9 +1,9 @@
 (ns schoolvillage.db.core
   (:require
-    [cheshire.core :refer [generate-string parse-string]]
-    [clojure.java.jdbc :as jdbc]
-    [conman.core :as conman]
-    [environ.core :refer [env]])
+   [cheshire.core :refer [generate-string parse-string]]
+   [clojure.java.jdbc :as jdbc]
+   [conman.core :as conman]
+   [environ.core :refer [env]])
   (:import org.postgresql.util.PGobject
            org.postgresql.jdbc4.Jdbc4Array
            clojure.lang.IPersistentMap
@@ -21,6 +21,14 @@
 (defn get-user [id]
   (first (find-user {:id (Integer. id)})))
 
+(defn update-user [id first_name last_name email phone]
+  (println (str "!!!!! email   " email))
+  (update-user<! {:id                          (Integer. id)
+                  :first_name                       first_name
+                  :last_name                        last_name
+                  :email                            email
+                  :phone                            phone
+                  }))
 (def pool-spec
   {:adapter    :postgresql
    :init-size  1
@@ -30,7 +38,7 @@
 
 (defn connect! []
   (conman/connect!
-    *conn*
+   *conn*
    (assoc
      pool-spec
      :jdbc-url (env :database-url))))
@@ -53,18 +61,18 @@
 
   PGobject
   (result-set-read-column [pgobj _metadata _index]
-    (let [type  (.getType pgobj)
-          value (.getValue pgobj)]
-      (case type
-        "json" (parse-string value true)
-        "jsonb" (parse-string value true)
-        "citext" (str value)
-        value))))
+                          (let [type  (.getType pgobj)
+                                value (.getValue pgobj)]
+                            (case type
+                              "json" (parse-string value true)
+                              "jsonb" (parse-string value true)
+                              "citext" (str value)
+                              value))))
 
 (extend-type java.util.Date
   jdbc/ISQLParameter
   (set-parameter [v ^PreparedStatement stmt idx]
-    (.setTimestamp stmt idx (Timestamp. (.getTime v)))))
+                 (.setTimestamp stmt idx (Timestamp. (.getTime v)))))
 
 (defn to-pg-json [value]
   (doto (PGobject.)
