@@ -37,11 +37,11 @@
         phone (get-in request [:params :phone])
         ]
     (db/insert-user<! {:id                               0
-                    :first_name                       first_name
-                    :last_name                        last_name
-                    :email                            email
-                    :phone                            phone
-                    })
+                       :first_name                       first_name
+                       :last_name                        last_name
+                       :email                            email
+                       :phone                            phone
+                       })
     (response/redirect "/dbadmin/")))
 
 (defroutes dbadmin-routes

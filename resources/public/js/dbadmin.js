@@ -110,7 +110,7 @@ $( document ).ready(function() {
   $(".navbar-brand").on("click", function(event){
     event.preventDefault();
     $(this).blur();
-    location.replace('/api/dbadmin');
+    location.replace('/dbadmin');
   });
 
 
