@@ -10,8 +10,9 @@
             ))
 
 (defn home-page []
-  (layout/render
-   "home.html"))
+  (layout/render "home.html" {:flagged (db/get-flagged-users)
+                              :pending (db/get-pending-users)
+                              :recent (db/get-recent-users)}))
 
 (defn edit-route [request]
   (let [user-id (get-in request [:params :id])]
@@ -44,12 +45,18 @@
                        })
     (response/redirect "/dbadmin/")))
 
+(defn approve-route [request]
+  (let [user-id (get-in request [:params :id])]
+    (layout/render "approval.html" {:user (db/get-user user-id)
+                                            })))
+
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
   (GET "/edit/:id" [] edit-route)
   (POST "/update/:id" [] update-route)
   (GET "/new" [] new-route)
   (POST "/add" [] add-route)
+  (GET "/approve/:id" [] approve-route)
   )
 
 (defn admin? [name pass]

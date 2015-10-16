@@ -5,7 +5,7 @@
     <div class="panel-body">
         <div class="list-group">
             {% for company in recent %}
-            <a href="/api/dbadmin/edit/{{company.id}}" class="list-group-item">
+            <a href="/dbadmin/edit/{{company.id}}" class="list-group-item">
                 <span class="badge">view</span>
                 <i class="fa fa-fw fa-flag-o"></i> {{company.company_name}}
             </a>

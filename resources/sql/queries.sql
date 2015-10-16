@@ -1,24 +1,40 @@
--- name: find-company-by-id
-SELECT *
-FROM users WHERE id = :id
-
--- name: all-companies
+-- name: select-all-users
 SELECT * from users
 
--- name: flagged-companies
+-- name: select-user
+-- Returns the flag for a single company
+select * from users
+where id = :id
+
+-- name: update-user<!
+-- Updates a single user
+UPDATE users SET
+first_name = :first_name,
+last_name = :last_name,
+email = :email,
+phone = :phone,
+updated_at = CURRENT_TIMESTAMP
+WHERE id = :id
+
+-- name: select-flagged-users
 SELECT * from users where status = 'Flagged'
 ORDER BY (CASE WHEN updated_at IS NULL THEN 0 ELSE 1 END) DESC,
          updated_at DESC
 
--- name: pending-approval-companies
+-- name: select-pending-users
 SELECT * from users where status = 'Pending'
 ORDER BY (CASE WHEN updated_at IS NULL THEN 0 ELSE 1 END) DESC,
          updated_at DESC
 
--- name: recent-companies
+-- name: select-recent-users
 SELECT * from users
 where status = 'Approved' AND updated_at IS NOT NULL
 ORDER BY updated_at DESC
+
+
+
+---
+
 
 -- name: all-subsidiaries
 SELECT subsidiaries from users
@@ -134,16 +150,6 @@ nextval('users_serial'),
 'Pending',
 CURRENT_TIMESTAMP)
 
--- name: update-user<!
--- Updates a single user
-UPDATE users SET
-first_name = :first_name,
-last_name = :last_name,
-email = :email,
-phone = :phone,
-updated_at = CURRENT_TIMESTAMP
-WHERE id = :id
-
 
 -- name: approve-version<!
 -- Replaces a copy with a specified version
@@ -227,11 +233,6 @@ where id = :id
 select status from users
 where id = :id
 
--- name: find-user
--- Returns the flag for a single company
-select * from users
-where id = :id
-
 -- name: get-all-versions-count
 -- Returns the number of versions
 select cast(count(*) as integer) from companyversions
@@ -258,7 +259,7 @@ select * from companyversions where company_id = :id ORDER BY created_at DESC LI
 INSERT INTO users (username, password)
 VALUES (:username, :password)
 
--- name: get-dbadmin-by-username
+-- name: get-user-by-username
 -- Fetches a user from the DB based on username.
 -- Expects :username
 SELECT *

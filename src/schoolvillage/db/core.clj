@@ -19,7 +19,7 @@
 (conman/bind-connection *conn* "sql/queries.sql")
 
 (defn get-user [id]
-  (first (find-user {:id (Integer. id)})))
+  (first (select-user {:id (Integer. id)})))
 
 (defn update-user [id first_name last_name email phone]
   (println (str "!!!!! email   " email))
@@ -29,6 +29,16 @@
                   :email                            email
                   :phone                            phone
                   }))
+
+(defn get-flagged-users []
+  (select-flagged-users))
+
+(defn get-pending-users []
+  (select-pending-users))
+
+(defn get-recent-users []
+  (select-recent-users))
+
 (def pool-spec
   {:adapter    :postgresql
    :init-size  1
