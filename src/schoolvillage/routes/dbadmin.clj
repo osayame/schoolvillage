@@ -15,7 +15,7 @@
 
 (defn edit-route [request]
   (let [user-id (get-in request [:params :id])]
-    (layout/render "edit.html" {:endpoint (str "update/" user-id) :user (db/get-user 1)})))
+    (layout/render "edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
 
 (defn update-route [request]
   (let [user-id (get-in request [:params :id])
@@ -28,7 +28,7 @@
     (response/redirect (str "/dbadmin/edit/" user-id))))
 
 (defn new-route [request]
-  (layout/render "edit.html" {:endpoint "add" :company {}}))
+  (layout/render "edit.html" {:endpoint "add" :user {}}))
 
 (defn add-route [request]
   (let [first_name (get-in request [:params :first_name])
