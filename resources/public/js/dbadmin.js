@@ -192,7 +192,7 @@ $( document ).ready(function() {
     });
   });
 
-  $(document.body).on("click", ".btn-approve-version", function(event){
+  $(document.body).on("click", ".btn-approve", function(event){
     event.preventDefault();
     var company = $('#company_id').val();
     var version = $('#version_id').val();

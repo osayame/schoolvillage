@@ -47,9 +47,17 @@
 
 (defn approve-route [request]
   (let [user-id (get-in request [:params :id])]
-    (layout/render "approval.html" {:user (db/get-user user-id)
-                                            })))
+    (layout/render "edit.html" {:endpoint (str "approve/" user-id)
+                                :user (db/get-user user-id)
+                                })))
 
+(defn approve-route [request]
+  (let [user-id (get-in request [:params :company-id])]
+    (db/set-new-status (Integer/parseInt user-id) "Approved"))
+  (response/redirect (str "/dbadmin/")))
+
+(defn redirec-home []
+  )
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
   (GET "/edit/:id" [] edit-route)

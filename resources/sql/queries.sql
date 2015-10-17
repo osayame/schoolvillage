@@ -31,6 +31,11 @@ SELECT * from users
 where status = 'Approved' AND updated_at IS NOT NULL
 ORDER BY updated_at DESC
 
+-- name: update-status<!
+-- Changes the status of a single user
+update users
+set status = :status::company_status, updated_at = CURRENT_TIMESTAMP
+where id = :id
 
 
 ---
@@ -217,11 +222,6 @@ set status = 'Pending', updated_at = CURRENT_TIMESTAMP
 where id = :id
 
 
--- name: change-status<!
--- Changes the status of a single company
-update users
-set status = :status::company_status, updated_at = CURRENT_TIMESTAMP
-where id = :id
 
 -- name: get-flag-comment
 -- Returns the flag comment for a single company

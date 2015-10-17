@@ -30,14 +30,14 @@
                   :phone                            phone
                   }))
 
-(defn get-flagged-users []
-  (select-flagged-users))
+(defn get-flagged-users [] (select-flagged-users))
 
-(defn get-pending-users []
-  (select-pending-users))
+(defn get-pending-users [] (select-pending-users))
 
-(defn get-recent-users []
-  (select-recent-users))
+(defn get-recent-users [] (select-recent-users))
+
+(defn set-new-status [id status]
+  (update-status<! {:id id :status (str status)}))
 
 (def pool-spec
   {:adapter    :postgresql

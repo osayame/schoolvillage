@@ -6,6 +6,19 @@
 <div class="panel panel-default">
 
     <div class="panel-header">
+        {% if endpoint|contains?:"approve" %}
+        <div id="approve-form" class="pull-left">
+            <form style="display:inline" role="form" method="get" action="">
+                <button type="" class="btn btn-warning btn-sm pull-right btn-reject">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Reject
+                </button>
+                <button type="" class="btn btn-success btn-sm pull-right btn-approve">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Approve
+                </button>
+            </form>
+        </div>
+        {%endif%}
+
         <button class="btn btn-danger btn-sm pull-right flag-company" style="display:none">
             <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Flag
         </button>
@@ -22,6 +35,7 @@
         {% include "pending_alert.html" %}
 
     </div>
+    <br>
     <div class="panel-body">
 
         <form class="form-horizontal" id="editform" role="form" method="post" action="/dbadmin/{{endpoint}}">

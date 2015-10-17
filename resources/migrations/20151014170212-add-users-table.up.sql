@@ -10,7 +10,7 @@ CREATE TABLE users
   email text NOT NULL,
   phone text,
   flag_comment text,
-  status company_status,
+  status user_status,
   updated_at timestamp with time zone,
   last_name text,
   created_at timestamp with time zone,
@@ -34,9 +34,9 @@ WITH (
 
 --;;
 
--- Index: company_name
+-- Index: first_name
 
--- DROP INDEX company_name;
+-- DROP INDEX first_name;
 
 CREATE INDEX first_name
   ON users
@@ -53,4 +53,8 @@ CREATE UNIQUE INDEX id
   ON users
   USING btree
   (id);
+
+--;;
+
+create type user_status as enum ('Approved', 'Pending', 'Flagged');
 
