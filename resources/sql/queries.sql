@@ -6,6 +6,25 @@ SELECT * from users
 select * from users
 where id = :id
 
+-- name: insert-user<!
+-- Inserts a single user
+INSERT INTO users (
+id,
+first_name,
+last_name,
+email,
+phone,
+status,
+created_at)
+VALUES (
+nextval('users_serial'),
+:first_name,
+:last_name,
+:email,
+:phone,
+'Pending',
+CURRENT_TIMESTAMP)
+
 -- name: update-user<!
 -- Updates a single user
 UPDATE users SET
@@ -15,6 +34,7 @@ email = :email,
 phone = :phone,
 updated_at = CURRENT_TIMESTAMP
 WHERE id = :id
+
 
 -- name: select-flagged-users
 SELECT * from users where status = 'Flagged'
@@ -34,7 +54,7 @@ ORDER BY updated_at DESC
 -- name: update-status<!
 -- Changes the status of a single user
 update users
-set status = :status::company_status, updated_at = CURRENT_TIMESTAMP
+set status = :status::user_status, updated_at = CURRENT_TIMESTAMP
 where id = :id
 
 
@@ -67,129 +87,6 @@ SELECT subsidiaries
 FROM users
 WHERE id = :id;
 
--- name: insert-company<!
--- Inserts a single company
-INSERT INTO users (
-id,
-first_name,
-last_name,
-region,
-corporate_contact_name,
-email,
-phone,
-matching_gift_offered,
-retirees_eligible,
-part_time_eligible,
-full_time_eligible,
-maximum_matched,
-minimum_matched,
-ratio,
-matching_gift_process,
-url_forms,
-url_guidelines,
-intranet_forms,
-intranet_guidelines,
-volunteer_grant_offered,
-volunteer_grant_process,
-volunteer_minimum_hours_required,
-corporate_donation_offered,
-higher_ed,
-k12,
-arts_and_cultural,
-environmental,
-health_human_services,
-civic_community,
-subsidiaries,
-status,
-updated_at)
-VALUES (
-nextval('companies_serial'),
-:first_name,
-:last_name,
-:region,
-:corporate_contact_name,
-:email,
-:phone,
-:matching_gift_offered,
-:retirees_eligible,
-:part_time_eligible,
-:full_time_eligible,
-:maximum_matched,
-:minimum_matched,
-:ratio,
-:matching_gift_process,
-:url_forms,
-:url_guidelines,
-:intranet_forms,
-:intranet_guidelines,
-:volunteer_grant_offered,
-:volunteer_grant_process,
-:volunteer_minimum_hours_required,
-:corporate_donation_offered,
-:higher_ed,
-:k12,
-:arts_and_cultural,
-:environmental,
-:health_human_services,
-:civic_community,
-:subsidiaries,
-'Approved',
-CURRENT_TIMESTAMP)
-
--- name: insert-user<!
--- Inserts a single user
-INSERT INTO users (
-id,
-first_name,
-last_name,
-email,
-phone,
-status,
-created_at)
-VALUES (
-nextval('users_serial'),
-:first_name,
-:last_name,
-:email,
-:phone,
-'Pending',
-CURRENT_TIMESTAMP)
-
-
--- name: approve-version<!
--- Replaces a copy with a specified version
-UPDATE users
-set
-first_name = data->>'first_name',
-last_name = data->>'last_name',
-corporate_contact_name = data->>'corporate_contact_name',
-email = data->>'email',
-phone=data->>'phone',
-matching_gift_offered = (select cast(t.data->>'matching_gift_offered' as boolean)),
-retirees_eligible = (select cast(t.data->>'retirees_eligible' as boolean)),
-part_time_eligible = (select cast(t.data->>'part_time_eligible' as boolean)),
-full_time_eligible = (select cast(t.data->>'full_time_eligible' as boolean)),
-maximum_matched = t.data->>'maximum_matched',
-minimum_matched = t.data->>'minimum_matched',
-ratio = data->>'ratio',
-matching_gift_process = data->>'matching_gift_process',
-url_forms = data->>'url_forms',
-url_guidelines = data->>'url_guidelines',
-volunteer_grant_offered = (select cast(t.data->>'volunteer_grant_offered' as boolean)),
-volunteer_grant_process = data->>'volunteer_grant_process',
-volunteer_minimum_hours_required = data->>'volunteer_minimum_hours_required',
-intranet_forms = (select cast(t.data->>'intranet_forms' as boolean)),
-intranet_guidelines = (select cast(t.data->>'intranet_guidelines' as boolean)),
-higher_ed = (select cast(t.data->>'higher_ed' as boolean)),
-k12 = (select cast(t.data->>'k12' as boolean)),
-arts_and_cultural = (select cast(t.data->>'arts_and_cultural' as boolean)),
-environmental = (select cast(t.data->>'environmental' as boolean)),
-health_human_services = (select cast(t.data->>'health_human_services' as boolean)),
-civic_community = (select cast(t.data->>'civic_community' as boolean)),
-updated_at = CURRENT_TIMESTAMP,
-status = 'Approved'
-from (select company_id, data from companyversions where id = :version) as t
-where id = t.company_id
 
 -- name: insert-subsidiary<!
 -- Inserts a single subsidiary

@@ -194,15 +194,14 @@ $( document ).ready(function() {
 
   $(document.body).on("click", ".btn-approve", function(event){
     event.preventDefault();
-    var company = $('#company_id').val();
-    var version = $('#version_id').val();
-    var url = "/api/dbadmin/approve-version/" + version + '?';
+    var id = $('#user_id').val();
+    var url = "/dbadmin/approve/" + id;
 
     $.post(url, function( data ) {
 
     })
         .done (function() {
-      location.replace("/api/dbadmin/company/" + company + '?');
+      location.replace("/dbadmin/edit/" + id);
     })
         .error (function(xhr) {
       console.log(xhr.responseText);

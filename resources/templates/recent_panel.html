@@ -4,10 +4,10 @@
     </div>
     <div class="panel-body">
         <div class="list-group">
-            {% for company in recent %}
-            <a href="/dbadmin/edit/{{company.id}}" class="list-group-item">
+            {% for user in recent %}
+            <a href="/dbadmin/edit/{{user.id}}" class="list-group-item">
                 <span class="badge">view</span>
-                <i class="fa fa-fw fa-flag-o"></i> {{company.company_name}}
+                <i class="fa fa-fw fa-flag-o"></i> {{user.first_name}} {{user.last_name}}
             </a>
             {% endfor %}
         </div>

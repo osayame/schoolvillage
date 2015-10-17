@@ -9,10 +9,10 @@
         {% if endpoint|contains?:"approve" %}
         <div id="approve-form" class="pull-left">
             <form style="display:inline" role="form" method="get" action="">
-                <button type="" class="btn btn-warning btn-sm pull-right btn-reject">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Reject
+                <button type="" class="btn btn-warning btn-sm btn-reject">
+                    <span class="glyphicon glyphicon-warning" aria-hidden="true"></span> Reject
                 </button>
-                <button type="" class="btn btn-success btn-sm pull-right btn-approve">
+                <button type="" class="btn btn-success btn-sm btn-approve">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Approve
                 </button>
             </form>
@@ -240,7 +240,13 @@
         -->
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary btn-update">Update</button>
+                <button type="submit" class="btn btn-primary btn-update">
+                    {% if endpoint|contains?:"add" %}
+                    Add
+                    {%else%}
+                    Update
+                    {%endif%}
+                </button>
             </div>
         </div>
     </form>

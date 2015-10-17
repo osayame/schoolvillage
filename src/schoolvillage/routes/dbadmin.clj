@@ -45,26 +45,29 @@
                        })
     (response/redirect "/dbadmin/")))
 
-(defn approve-route [request]
+(defn approval-route [request]
   (let [user-id (get-in request [:params :id])]
     (layout/render "edit.html" {:endpoint (str "approve/" user-id)
                                 :user (db/get-user user-id)
                                 })))
 
-(defn approve-route [request]
-  (let [user-id (get-in request [:params :company-id])]
-    (db/set-new-status (Integer/parseInt user-id) "Approved"))
+(defn redirect-home []
   (response/redirect (str "/dbadmin/")))
 
-(defn redirec-home []
-  )
+(defn approve-route [request]
+  (let [user-id (get-in request [:params :id])]
+    (db/set-new-status (Integer. user-id) "Approved"))
+  (redirect-home))
+
+
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
   (GET "/edit/:id" [] edit-route)
   (POST "/update/:id" [] update-route)
   (GET "/new" [] new-route)
   (POST "/add" [] add-route)
-  (GET "/approve/:id" [] approve-route)
+  (GET "/approve/:id" [] approval-route)
+  (POST "/approve/:id" [] approve-route)
   )
 
 (defn admin? [name pass]
