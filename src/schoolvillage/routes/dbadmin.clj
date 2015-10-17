@@ -18,32 +18,22 @@
   (let [user-id (get-in request [:params :id])]
     (layout/render "edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
 
-(defn update-route [request]
-  (let [user-id (get-in request [:params :id])
-        first_name (get-in request [:params :first_name])
-        last_name (get-in request [:params :last_name])
-        email (get-in request [:params :email])
-        phone (get-in request [:params :phone])
-        ]
-    (db/update-user user-id first_name last_name email phone)
-    (response/redirect (str "/dbadmin/edit/" user-id))))
+
+(defn update-route [request route]
+  (if (= route "edit")
+    (db/update-user (get-in request [:params]))
+    (db/add-user (get-in request [:params])))
+  (response/redirect (str "/dbadmin/edit/" (get-in request [:params :id]))))
+
+
+(defn add-route [request]
+  (update-route request "add"))
+
+(defn modify-route [request]
+  (update-route request "edit"))
 
 (defn new-route [request]
   (layout/render "edit.html" {:endpoint "add" :user {}}))
-
-(defn add-route [request]
-  (let [first_name (get-in request [:params :first_name])
-        last_name (get-in request [:params :last_name])
-        email (get-in request [:params :email])
-        phone (get-in request [:params :phone])
-        ]
-    (db/insert-user<! {:id                               0
-                       :first_name                       first_name
-                       :last_name                        last_name
-                       :email                            email
-                       :phone                            phone
-                       })
-    (response/redirect "/dbadmin/")))
 
 (defn approval-route [request]
   (let [user-id (get-in request [:params :id])]
@@ -71,7 +61,7 @@
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
   (GET "/edit/:id" [] edit-route)
-  (POST "/update/:id" [] update-route)
+  (POST "/update/:id" [] modify-route)
   (GET "/new" [] new-route)
   (POST "/add" [] add-route)
   (GET "/approve/:id" [] approval-route)

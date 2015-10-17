@@ -75,6 +75,23 @@
                 </div>
             </div>
 
+            <hr>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Photo</label>
+                <div class="col-sm-6">
+                    <input id="photo" type="hidden" name="photo" value="{{user.photo}}">
+                    <img width="300px" height="300px" id="user-photo" src=
+                    {% if user.photo|empty? %}
+                    "/img/default-photo.jpeg"
+                    {%else%}
+                    "https://s3.amazonaws.com/schoolvillage/photos/{{user.photo}}"
+                    {%endif%}>
+                </div>
+                <!-- <div class="clearfix"></div> -->
+                <!-- <span class="help-block">Don't worry about your photo's dimensions. We'll automatically resize it to ensure it fits.</span> -->
+                <button type="button" id="pick-photo" class="btn btn-primary btn-sm">Upload New Photo</button>
+            </div>
+
 
 
             <!-- <h3>Matching Gifts</h3>
@@ -238,6 +255,8 @@
             </div>
 
         -->
+        <hr>
+        <br>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary btn-update">

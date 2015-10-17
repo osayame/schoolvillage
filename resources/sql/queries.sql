@@ -15,6 +15,7 @@ last_name,
 email,
 phone,
 status,
+photo,
 created_at)
 VALUES (
 nextval('users_serial'),
@@ -22,6 +23,7 @@ nextval('users_serial'),
 :last_name,
 :email,
 :phone,
+:photo,
 'Pending',
 CURRENT_TIMESTAMP)
 
@@ -32,6 +34,7 @@ first_name = :first_name,
 last_name = :last_name,
 email = :email,
 phone = :phone,
+photo = :photo,
 updated_at = CURRENT_TIMESTAMP
 WHERE id = :id
 

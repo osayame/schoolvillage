@@ -21,14 +21,11 @@
 (defn get-user [id]
   (first (select-user {:id (Integer. id)})))
 
-(defn update-user [id first_name last_name email phone]
-  (println (str "!!!!! email   " email))
-  (update-user<! {:id                          (Integer. id)
-                  :first_name                       first_name
-                  :last_name                        last_name
-                  :email                            email
-                  :phone                            phone
-                  }))
+(defn update-user [params]
+  (update-user<! (assoc params :id (Integer. (:id params)))))
+
+(defn add-user [params]
+  (insert-user<! (assoc params :id 0)))
 
 (defn get-all-users [] (select-all-users))
 
