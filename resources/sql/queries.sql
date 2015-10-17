@@ -46,6 +46,10 @@ SELECT * from users where status = 'Pending'
 ORDER BY (CASE WHEN updated_at IS NULL THEN 0 ELSE 1 END) DESC,
          updated_at DESC
 
+-- name: select-approved-users
+SELECT * from users
+where status = 'Approved'
+
 -- name: select-recent-users
 SELECT * from users
 where status = 'Approved' AND updated_at IS NOT NULL

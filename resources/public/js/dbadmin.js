@@ -1,6 +1,38 @@
 $( document ).ready(function() {
   initializeCategories();
 
+  $(document.body).on("click", ".btn-approve", function(event){
+    event.preventDefault();
+    var id = $('#user_id').val();
+    var url = "/dbadmin/approve/" + id;
+
+    $.post(url, function( data ) {
+
+    })
+        .done (function() {
+      location.replace("/dbadmin/edit/" + id);
+    })
+        .error (function(xhr) {
+      console.log(xhr.responseText);
+    })
+  });
+
+    $(document.body).on("click", ".btn-reject", function(event){
+    event.preventDefault();
+    var id = $('#user_id').val();
+    var url = "/dbadmin/flag/" + id;
+
+    $.post(url, function( data ) {
+
+    })
+        .done (function() {
+      location.replace("/dbadmin/edit/" + id);
+    })
+        .error (function(xhr) {
+      console.log(xhr.responseText);
+    })
+  });
+
   tinymce.init({
     selector: ".tinymce",
     theme: "modern",
@@ -192,21 +224,7 @@ $( document ).ready(function() {
     });
   });
 
-  $(document.body).on("click", ".btn-approve", function(event){
-    event.preventDefault();
-    var id = $('#user_id').val();
-    var url = "/dbadmin/approve/" + id;
 
-    $.post(url, function( data ) {
-
-    })
-        .done (function() {
-      location.replace("/dbadmin/edit/" + id);
-    })
-        .error (function(xhr) {
-      console.log(xhr.responseText);
-    })
-  });
 
   $(document.body).on("click", ".btn-pending", function(event){
     event.preventDefault();

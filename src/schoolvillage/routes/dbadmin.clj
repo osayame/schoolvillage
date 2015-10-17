@@ -59,6 +59,14 @@
     (db/set-new-status (Integer. user-id) "Approved"))
   (redirect-home))
 
+(defn flag-route [request]
+  (let [user-id (get-in request [:params :id])]
+    (db/set-new-status (Integer. user-id) "Flagged"))
+  (redirect-home))
+
+(defn sages-route [request]
+  (layout/render "sages.html" {:sages (db/get-all-users)}))
+
 
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
@@ -68,6 +76,8 @@
   (POST "/add" [] add-route)
   (GET "/approve/:id" [] approval-route)
   (POST "/approve/:id" [] approve-route)
+  (POST "/flag/:id" [] flag-route)
+  (GET "/sages" [] sages-route)
   )
 
 (defn admin? [name pass]

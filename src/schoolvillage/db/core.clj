@@ -30,6 +30,8 @@
                   :phone                            phone
                   }))
 
+(defn get-all-users [] (select-all-users))
+
 (defn get-flagged-users [] (select-flagged-users))
 
 (defn get-pending-users [] (select-pending-users))
