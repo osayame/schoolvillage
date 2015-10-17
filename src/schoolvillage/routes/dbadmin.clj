@@ -20,17 +20,12 @@
 
 
 (defn update-route [request route]
-  (if (= route "edit")
-    (db/update-user (get-in request [:params]))
-    (db/add-user (get-in request [:params])))
+  (db/update-user (get-in request [:params]))
   (response/redirect (str "/dbadmin/edit/" (get-in request [:params :id]))))
 
-
 (defn add-route [request]
-  (update-route request "add"))
-
-(defn modify-route [request]
-  (update-route request "edit"))
+  (db/add-user (get-in request [:params]))
+  (response/redirect (str "/dbadmin/")))
 
 (defn new-route [request]
   (layout/render "edit.html" {:endpoint "add" :user {}}))
@@ -61,7 +56,7 @@
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
   (GET "/edit/:id" [] edit-route)
-  (POST "/update/:id" [] modify-route)
+  (POST "/update/:id" [] update-route)
   (GET "/new" [] new-route)
   (POST "/add" [] add-route)
   (GET "/approve/:id" [] approval-route)
