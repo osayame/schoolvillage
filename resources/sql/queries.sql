@@ -23,8 +23,8 @@ nextval('users_serial'),
 :last_name,
 :email,
 :phone,
+'Pending'::user_status,
 :photo,
-'Pending',
 CURRENT_TIMESTAMP)
 
 -- name: update-user<!
