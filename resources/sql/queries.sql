@@ -9,23 +9,33 @@ where id = :id
 -- name: insert-user<!
 -- Inserts a single user
 INSERT INTO users (
-id,
-first_name,
-last_name,
-email,
-phone,
-status,
-photo,
-created_at)
+  id,
+  first_name,
+  last_name,
+  email,
+  phone,
+  status,
+  photo,
+  resume,
+  address1,
+  city,
+  state,
+  zip,
+  created_at)
 VALUES (
-nextval('users_serial'),
-:first_name,
-:last_name,
-:email,
-:phone,
-'Pending'::user_status,
-:photo,
-CURRENT_TIMESTAMP)
+  nextval('users_serial'),
+  :first_name,
+  :last_name,
+  :email,
+  :phone,
+  'Pending'::user_status,
+  :photo,
+  :resume,
+  :address1,
+  :city,
+  :state,
+  :zip,
+  CURRENT_TIMESTAMP)
 
 -- name: update-user<!
 -- Updates a single user
@@ -35,6 +45,10 @@ last_name = :last_name,
 email = :email,
 phone = :phone,
 photo = :photo,
+resume = :resume,
+address1 = :address1,
+city = :city,
+state = :state,
 updated_at = CURRENT_TIMESTAMP
 WHERE id = :id
 

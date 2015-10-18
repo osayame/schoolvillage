@@ -19,7 +19,7 @@
     (layout/render "edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
 
 
-(defn update-route [request route]
+(defn update-route [request]
   (db/update-user (get-in request [:params]))
   (response/redirect (str "/dbadmin/edit/" (get-in request [:params :id]))))
 
@@ -52,6 +52,10 @@
 (defn sages-route [request]
   (layout/render "sages.html" {:sages (db/get-all-users)}))
 
+(defn get-state-route [request]
+  (str (:state
+        (db/get-user
+         (Integer. (get-in request [:params :id]))))))
 
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
@@ -63,6 +67,7 @@
   (POST "/approve/:id" [] approve-route)
   (POST "/flag/:id" [] flag-route)
   (GET "/sages" [] sages-route)
+  (GET "/state/:id" [] get-state-route)
   )
 
 (defn admin? [name pass]

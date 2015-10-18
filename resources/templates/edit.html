@@ -1,6 +1,13 @@
 {% extends "home.html" %}
 {% block content %}
-<h1>{{user.first_name}} {{user.last_name}}</h1>
+
+<h1>
+    {% if user.first_name|empty?%}
+    New User
+    {%else%}
+    {{user.first_name}} {{user.last_name}}
+    {%endif%}
+</h1>
 <input type="hidden" name="id" id="user_id" value="{{user.id}}">
 
 <div class="panel panel-default">
@@ -51,14 +58,14 @@
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">First Name:</label>
                 <div class="col-sm-10">
-                    <input type="name" class="form-control" name="first_name" value="{{user.first_name}}">
+                    <input type="name" class="form-control" name="first_name" value="{{user.first_name}}" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Last Name:</label>
                 <div class="col-sm-10">
-                    <input type="name" class="form-control" name="last_name" value="{{user.last_name}}">
+                    <input type="name" class="form-control" name="last_name" value="{{user.last_name}}" required>
                 </div>
             </div>
 
@@ -68,19 +75,45 @@
                     <input type="email" class="form-control" name="email" id="email" value="{{user.email}}">
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="control-label col-sm-2" for="phone">Phone:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="phone" value="{{user.phone}}">
+                    <input type="tel" class="form-control" name="phone" value="{{user.phone}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Address:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="address1" value="{{user.address1}}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">City:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="city" value="{{user.city}}">
+                </div>
+            </div>
+
+            {% include "states_dropdown_partial.html" %}
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Zip:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="zip" value="{{user.zip}}">
                 </div>
             </div>
 
             <hr>
+            <h3>Profile</h3>
+
             <div class="form-group">
                 <label class="control-label col-sm-2">Photo</label>
                 <div class="col-sm-6">
                     <input id="photo" type="hidden" name="photo" value="{{user.photo}}">
-                    <img width="300px" height="300px" id="user-photo" src=
+                    <img width="150" height="150" id="user-photo" src=
                     {% if user.photo|empty? %}
                     "/img/default-photo.jpeg"
                     {%else%}
@@ -90,6 +123,21 @@
                 <!-- <div class="clearfix"></div> -->
                 <!-- <span class="help-block">Don't worry about your photo's dimensions. We'll automatically resize it to ensure it fits.</span> -->
                 <button type="button" id="pick-photo" class="btn btn-primary btn-sm">Upload New Photo</button>
+            </div>
+
+
+            <hr>
+            <h3>Documentation</h3>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Resume</label>
+                <input id="resume" type="hidden" name="resume" value="{{user.resume}}">
+                
+                {% if user.resume|not-empty %}
+                <a href="https://s3.amazonaws.com/schoolvillage/resumes/{{user.resume}}" target="_blank" class="btn btn-success">View Resume</a>
+                {%endif%}
+
+                <button type="button" id="pick-resume" class="btn btn-primary btn-sm">Upload New Resume</button>
             </div>
 
 
