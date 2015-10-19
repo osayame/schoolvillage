@@ -19,29 +19,15 @@
 
     {% block main-container %}
     <div class="main-container">
-        <section class="cover fullscreen image-slider slider-all-controls controls-inside parallax">
-            <ul class="slides">
-                <li class="overlay image-bg">
-                    <div class="background-image-holder">
-                        <img alt="image" class="background-image" src="img/man-pencil.jpg" />
-                    </div>
-                    <div class="container v-align-transform">
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
-                                <h1 class="mb8">Learning, On-Demand</h1>
-                                <p class="lead mb48">
-                                    BOOK A SESSION WITH AN EDUCATOR, INSTANTLY.
-                                </p>
-                            </div>
-                        </div>
-                        <!--end of row-->
-                    </div>
-                    <!--end of container-->
-                </li>
-            </ul>
-        </section>
+         {% include home_image_slider_partial.html %}
         <section class="pb64 pb-xs-40">
             <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-sm-12">
+                        <h2 class="mb16" style="text-align:center">How It Works</h2>
+                        <hr>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="feature feature-2 filled text-center">
@@ -143,7 +129,7 @@
             <div class="container">
                 <div class="row mb64 mb-xs-24">
                     <div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
-                        <h3>People like you love Foundry</h3>
+                        <h3>People like you love School Village</h3>
                     </div>
                 </div>
                 <!--end of row-->
