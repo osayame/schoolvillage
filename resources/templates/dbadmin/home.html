@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Village Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.4/paper/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jquery.typeahead.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/dbadmin.css">
+    <link rel="stylesheet" href="/css/subsidiaries.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.2.6/tinymce.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.jquery.min.js"></script>
+    <script type="text/javascript" src="https://api.filepicker.io/v2/filepicker.js"></script>
+    <script src="/js/dbadmin.js"></script>
+    <script src="/js/users-profile.js"></script>
+
+</head>
+<body>
+    {% block container %}
+    <div class="container-fluid">
+        {% include "navbar.html" %}
+        {% block body %}
+        <div class="col-sm-2">
+            <h1>Actions</h1>
+
+            <!-- <form style="display:inline" class="" role="form" method="get" action="/dbadmin/new">
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Sage
+                </button>
+            </form> -->
+            <a href="/dbadmin/new" class="btn btn-primary">
+               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+               Add Sage
+           </a>
+           <hr>
+           <a href="/dbadmin/sages" class="btn btn-primary">View All Sages</a>
+       </div>
+       <div class="col-sm-10">
+
+        {% block content %}
+        <div class="col-lg-4">
+            {% include "flagged_panel.html" %}
+        </div>
+        <div class="col-lg-4">
+            {% include "pending_approval_panel.html" %}
+        </div>
+        <div class="col-lg-4">
+            {% include "recent_panel.html" %}
+        </div>
+        {% endblock %}
+    </div>
+
+    {% endblock %}
+
+</div>
+
+{% endblock %}
+
+</body>
+
+</html>
