@@ -13,7 +13,7 @@
   (layout/render "index.html"))
 
 (defn about-page []
-  (layout/render "about.html"))
+  (layout/render "about-us.html"))
 
 (defroutes home-routes
   (route/resources "/")
