@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>On-Demand Training and Tutoring - School Village</title>
+    <title>On-Demand Learning, Tutoring, and Training - School Village</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
@@ -41,6 +41,11 @@
                                 Our expanding catalog of subject areas includes 
                                 <b>Math, English, SAT, ACT, Accounting, Finance, Economics,</b> and much more.
                             </p>
+                            <p style="text-align: center;">
+                                <a class="btn btn-xs btn-rounded" href="/subjects">
+                                    View Subjects
+                                </a>
+                            </p>
                         </div>
                         <!--end of feature-->
                     </div>
@@ -53,6 +58,11 @@
                             <p>
                                 We show you highly qualified and relevant educators in <b>your local area</b>. You can read about them and decide which one you prefer.
                             </p>
+                            <p style="text-align: center;">
+                                <a class="btn btn-xs btn-rounded" href="/subjects">
+                                    View Tutors
+                                </a>
+                            </p>
                         </div>
                         <!--end of feature-->
                     </div>
@@ -63,7 +73,12 @@
                                 <h5 class="uppercase">PICK A TIME</h5>
                             </div>
                             <p>
-                                You <b>pick any time that works for you</b> from an up-to-date calendar, and pay for your session.
+                                You <b>pick any time that works for you</b> from an up-to-date calendar, and pay for your session. We'll notify your tutor and they will contact you within 24 hours.
+                            </p>
+                            <p style="text-align: center;">
+                                <a class="btn btn-xs btn-rounded" href="/subjects">
+                                    View Times
+                                </a>
                             </p>
                         </div>
                         <!--end of feature-->
@@ -76,23 +91,33 @@
         <section class="image-square left bg-secondary pb-sm-64">
             <div class="col-md-6 image">
                 <div class="background-image-holder">
-                    <img alt="image" class="background-image" src="img/home17.jpg" />
+                    <img alt="image" class="background-image" src="img/meeting.jpg" />
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-1 content">
-                <h3>Build a slick, modern site faster than ever before.</h3>
+                <h3>Learning should be fun and affordable.</h3>
                 <p class="mb0">
-                    Foundry is a remarkably complete template offering you a plethora of handcrafted design elements. Whether promoting a product, service or portfolio - Foundry's unique and flexible style has you covered.
+                    <b>School Village</b> is a remarkably easy way to get help with your school assignments, work projects, or pet project. By simplifying the process, we can reduce the cost of every session. Our strict selection process ensures that <b>every experience will be great</b>.
+                </p>
+                <br>
+                <br>
+                <p style="text-align: center;">
+                    <a class="btn btn-xs btn-rounded" href="/subjects">
+                        Try a Free Session
+                    </a>
                 </p>
             </div>
+
         </section>
         <section>
             <div class="container">
                 <div class="row mb64 mb-xs-24">
                     <div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
-                        <h3>Built from the ground-up to be the ultimate in flexibility</h3>
+                        <h3>
+                            Built from the ground-up to be the ultimate in flexibility and quality
+                        </h3>
                         <p class="lead mb0">
-                            Foundry is a remarkably complete template offering you a plethora of handcrafted design elements. Whether promoting a product, service or portfolio - Foundry's unique and flexible style has you covered.
+                            School Village is a dedicated to providing a wonderful learning experience. Whether you're learning Russian phonetics or basic geometry - School Village's great educators have you covered.
                         </p>
                     </div>
                 </div>
@@ -101,13 +126,13 @@
                     <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1 mb-xs-24">
                         <h1 class="large">100+</h1>
                         <p>
-                            Pre-made HTML page templates including fully realized shop, blog and portfolio layouts.
+                            Highly-educated educators including professors and professionals.
                         </p>
                     </div>
                     <div class="col-md-4 col-sm-5 mb-xs-24">
                         <h1 class="large">Elite</h1>
                         <p>
-                            We're a trusted, elite author who have been featured multiple times on Themeforest.
+                            We only allow the smartest people to join us, so we guarantee that you'll get the help you need.
                         </p>
                     </div>
                 </div>
@@ -115,19 +140,9 @@
             </div>
             <!--end of container-->
         </section>
-        <section class="image-square right bg-secondary pb-sm-64">
-            <div class="col-md-6 image">
-                <div class="background-image-holder">
-                    <img alt="image" class="background-image" src="img/home15.jpg" />
-                </div>
-            </div>
-            <div class="col-md-6 content">
-                <h3>Start building beautiful pages directly in your browser.</h3>
-                <p class="mb0">
-                    Foundry is your complete design toolkit, built from the ground up to be flexible, extensible and stylish. Building slick, contemporary sites has never been this easy!
-                </p>
-            </div>
-        </section>
+
+        {% include home_become_tutor_partial.html %}
+
         <section>
             <div class="container">
                 <div class="row mb64 mb-xs-24">
@@ -139,35 +154,35 @@
                 <div class="row">
                     <div class="col-sm-4 text-center">
                         <div class="feature boxed cast-shadow-light">
-                            <img alt="Pic" class="image-small inline-block mb24" src="img/avatar1.png" />
-                            <h4>"Polished, Incredible!"</h4>
+                            <img alt="Pic" class="img-circle image-small inline-block mb24" src="img/man-headshot.jpg" />
+                            <h4>"Life Saver!"</h4>
                             <p>
-                                It's clear to see just how seriously these guys take design. I've never come across a template with the level of polish as this!
+                                A week before my final exam, I used School Village to book a session with a great Accounting tutor. I would have flunked without you guys!
                             </p>
                             <span>
-                                <strong>Anne Potter</strong> - via Envato</span>
+                                <strong>James P.</strong> - via Miami, FL</span>
                             </div>
                         </div>
                         <div class="col-sm-4 text-center">
                             <div class="feature boxed cast-shadow-light">
-                                <img alt="Pic" class="image-small inline-block mb24" src="img/avatar2.png" />
+                                <img alt="Pic" class="img-circle image-small inline-block mb24" src="img/girl-child.jpg" />
                                 <h4>"Customer For Life"</h4>
                                 <p>
-                                    I love the ease-of-use the builder provides - I can quickly test different combinations and experiment with font and color combinations to find that sweet spot.
+                                    My mom found me a great piano teacher on School Village. Every week, all she has to do is click on the site and pay for my session. She's less stressed now. Thank you!
                                 </p>
                                 <span>
-                                    <strong>Jake Sims</strong> - via Twitter</span>
+                                    <strong>Maria R.</strong> - via Miramar, FL</span>
                                 </div>
                             </div>
                             <div class="col-sm-4 text-center">
                                 <div class="feature boxed cast-shadow-light">
-                                    <img alt="Pic" class="image-small inline-block mb24" src="img/avatar3.png" />
+                                    <img alt="Pic" class="img-circle image-small inline-block mb24" src="img/woman-headshot.jpg" />
                                     <h4>"Almost too easy!"</h4>
                                     <p>
-                                        As a seasoned template user, I really appreciate the consistent styling for all common tags, it makes customising the sections that much easier.
+                                        It took me 5 minutes to book a Calculus tutor. She called me on the same day. My session was amazing, and I finally get integrals. Wow! Something that works, and isn't too expensive.
                                     </p>
                                     <span>
-                                        <strong>Larry Smith</strong> - via Envato</span>
+                                        <strong>Jessica T.</strong> - via Hialeah, FL</span>
                                     </div>
                                 </div>
                             </div>
@@ -182,23 +197,23 @@
                         <div class="container">
                             <div class="row mb64 mb-xs-24">
                                 <div class="col-sm-6 col-md-5 text-right text-center-xs">
-                                    <h1 class="large mb8">10,000+</h1>
-                                    <h6 class="uppercase">Customers using our templates</h6>
+                                    <h1 class="large mb8">1,000+</h1>
+                                    <h6 class="uppercase">Sessions scheduled through us</h6>
                                 </div>
                                 <div class="col-md-2 text-center hidden-sm hidden-xs">
                                     <i class="ti-infinite icon icon-lg mt8 mt-xs-0"></i>
                                 </div>
                                 <div class="col-sm-6 col-md-5 text-center-xs">
                                     <h1 class="large mb8">Limitless</h1>
-                                    <h6 class="uppercase">Layout potential using Foundry</h6>
+                                    <h6 class="uppercase">Tutoring sessions and learning</h6>
                                 </div>
                             </div>
                             <!--end of row-->
                             <div class="row">
                                 <div class="col-sm-12 text-center">
-                                    <h3 class="mb40 mb-xs-24">Authentic, handcrafted design that gives your
-                                        <br /> site subtle, confident appeal.</h3>
-                                        <a class="btn btn-lg btn-filled" href="chooser.html">Check Out The Demos</a>
+                                    <h3 class="mb40 mb-xs-24">Reliable, on-demand educators that 
+                                        <br /> guarantee you'll learn what you need to.</h3>
+                                        <a class="btn btn-lg btn-filled" href="/book">Book A Session Today</a>
                                     </div>
                                 </div>
                                 <!--end of row-->
