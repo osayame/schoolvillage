@@ -10,13 +10,13 @@
             ))
 
 (defn home-page []
-  (layout/render "home.html" {:flagged (db/get-flagged-users)
+  (layout/render "/dbadmin/home.html" {:flagged (db/get-flagged-users)
                               :pending (db/get-pending-users)
                               :recent (db/get-recent-users)}))
 
 (defn edit-route [request]
   (let [user-id (get-in request [:params :id])]
-    (layout/render "edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
+    (layout/render "/dbadmin/edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
 
 
 (defn update-route [request]
@@ -28,11 +28,11 @@
   (response/redirect (str "/dbadmin/")))
 
 (defn new-route [request]
-  (layout/render "edit.html" {:endpoint "add" :user {}}))
+  (layout/render "/dbadmin/edit.html" {:endpoint "add" :user {}}))
 
 (defn approval-route [request]
   (let [user-id (get-in request [:params :id])]
-    (layout/render "edit.html" {:endpoint (str "approve/" user-id)
+    (layout/render "/dbadmin/edit.html" {:endpoint (str "approve/" user-id)
                                 :user (db/get-user user-id)
                                 })))
 
@@ -50,7 +50,7 @@
   (redirect-home))
 
 (defn sages-route [request]
-  (layout/render "sages.html" {:sages (db/get-all-users)}))
+  (layout/render "/dbadmin/sages.html" {:sages (db/get-all-users)}))
 
 (defn get-state-route [request]
   (str (:state

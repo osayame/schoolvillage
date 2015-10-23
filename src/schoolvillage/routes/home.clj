@@ -10,13 +10,13 @@
             [clojure.java.io :as io]))
 
 (defn home-page []
-  (layout/render "home.html" {:user (db/get-user 20)}))
+  (layout/render "home.html"))
 
 (defn profile-page []
   (layout/render "sage-profile.html" {:user (db/get-user 20)}))
 
 (defn about-page []
-  (layout/render "about-us.html"))
+  (layout/render "about.html"))
 
 (defroutes home-routes
   (route/resources "/")

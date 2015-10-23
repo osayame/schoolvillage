@@ -21,6 +21,8 @@ INSERT INTO users (
   city,
   state,
   zip,
+  url,
+  acuity_id,
   created_at)
 VALUES (
   nextval('users_serial'),
@@ -35,6 +37,8 @@ VALUES (
   :city,
   :state,
   :zip,
+  :url,
+  :acuity_id,
   CURRENT_TIMESTAMP)
 
 -- name: update-user<!
@@ -49,6 +53,9 @@ resume = :resume,
 address1 = :address1,
 city = :city,
 state = :state,
+zip = :zip,
+url = :url,
+acuity_id = :acuity_id,
 updated_at = CURRENT_TIMESTAMP
 WHERE id = :id
 
