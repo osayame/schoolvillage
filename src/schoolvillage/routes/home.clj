@@ -7,7 +7,9 @@
 
             [ring.util.http-response :refer [ok]]
             [compojure.core :refer :all]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [ring.util.response :as response]
+            ))
 
 (defn home-page []
   (layout/render "home.html"))
@@ -24,7 +26,7 @@
 (defroutes home-routes
   (route/resources "/")
   (GET "/" [] (home-page))
+  (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
-
   (GET "/:sage" [] profile-page)
   )
