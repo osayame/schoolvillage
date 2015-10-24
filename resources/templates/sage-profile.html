@@ -22,23 +22,31 @@
             <li class="active">{{user.first_name}} {{user.last_name}}</li>
         </ol>
     </section>
-    <section class="image-square left">
-        <div class="col-md-6 image">
-            <div class="background-image-holder">
-                <img alt="image" class="background-image" src="img/small2.jpg" />
+    <section>
+        <div class="container">
+            <div class="row v-align-children">
+                <div class="col-md-6 col-sm-6 text-center mb-xs-24">
+                    <img class="cast-shadow" alt="Screenshot" src="https://s3.amazonaws.com/schoolvillage/photos/{{user.photo}}" width="300" height="300"/>
+                </div>
+                <div class="col-md-6 col-md-offset-1 col-sm-5 col-sm-offset-1">
+                    <h4 class="uppercase">About {{user.first_name}}</h4>
+                    {{user.biography}}
+                    <br/>
+                    <br/>
+                    <hr>
+                    <!-- <h5>Contact Info</h5>
+                    <p>
+                        <strong>E:</strong> {{user.email}}
+                        <br />
+                        <strong>P:</strong> 
+                        <br />
+                    </p> -->
+                    <!-- <a class="btn-filled btn" href="#">Explore Foundry</a> -->
+                </div>
             </div>
+            <!--end of row-->
         </div>
-        <div class="col-md-6 col-md-offset-1 content">
-            <h4 class="uppercase">About {{user.first_name}}</h4>
-            {{user.biography}}
-            <h5>Contact Info</h5>
-            <p>
-                <strong>E:</strong> {{user.email}}
-                <br />
-                <strong>P:</strong> 
-                <br />
-            </p>
-        </div>
+        <!--end of container-->
     </section>
     <section class="">
         <div class="col-md-12">
@@ -46,6 +54,8 @@
             <div class="col-md-6 col-md-offset-3 content">
                 <iframe src="https://app.acuityscheduling.com/schedule.php?owner=11739157&calendarID={{user.acuity_id}}" width="100%" height="800" frameBorder="0"></iframe>
                 <script src="https://d3gxy7nm8y4yjr.cloudfront.net/js/embed.js" type="text/javascript"></script>
+                <script src="/js/sages-profile.js"></script>
+
             </div>
         </div>
     </section>
