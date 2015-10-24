@@ -1,4 +1,4 @@
-{% extends "/dbadmin/home.html" %}
+{% extends "dbadmin/home.html" %}
 {% block content %}
 
 <h1>
@@ -36,10 +36,10 @@
             <span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Pending
         </button>
 
-        {% include "/dbadmin/add_flag_modal.html" %}
-        {% include "/dbadmin/remove_flag_modal.html" %}
-        {% include "/dbadmin/flagged_alert.html" %}
-        {% include "/dbadmin/pending_alert.html" %}
+        {% include "dbadmin/add_flag_modal.html" %}
+        {% include "dbadmin/remove_flag_modal.html" %}
+        {% include "dbadmin/flagged_alert.html" %}
+        {% include "dbadmin/pending_alert.html" %}
 
     </div>
     <br>
@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            {% include "/dbadmin/states_dropdown_partial.html" %}
+            {% include "dbadmin/states_dropdown_partial.html" %}
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Zip:</label>

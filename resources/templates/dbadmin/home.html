@@ -20,7 +20,7 @@
 <body>
     {% block container %}
     <div class="container-fluid">
-        {% include "/dbadmin/navbar.html" %}
+        {% include "dbadmin/navbar.html" %}
         {% block body %}
         <div class="col-sm-2">
             <h1>Actions</h1>
@@ -41,13 +41,13 @@
 
         {% block content %}
         <div class="col-lg-4">
-            {% include "/dbadmin/flagged_panel.html" %}
+            {% include "dbadmin/flagged_panel.html" %}
         </div>
         <div class="col-lg-4">
-            {% include "/dbadmin/pending_approval_panel.html" %}
+            {% include "dbadmin/pending_approval_panel.html" %}
         </div>
         <div class="col-lg-4">
-            {% include "/dbadmin/recent_panel.html" %}
+            {% include "dbadmin/recent_panel.html" %}
         </div>
         {% endblock %}
     </div>
