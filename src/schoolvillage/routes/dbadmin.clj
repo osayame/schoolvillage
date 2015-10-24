@@ -10,13 +10,13 @@
             ))
 
 (defn home-page []
-  (layout/render "/dbadmin/home.html" {:flagged (db/get-flagged-users)
+  (layout/render "dbadmin/home.html" {:flagged (db/get-flagged-users)
                               :pending (db/get-pending-users)
                               :recent (db/get-recent-users)}))
 
 (defn edit-route [request]
   (let [user-id (get-in request [:params :id])]
-    (layout/render "/dbadmin/edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
+    (layout/render "dbadmin/edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
 
 
 (defn update-route [request]
