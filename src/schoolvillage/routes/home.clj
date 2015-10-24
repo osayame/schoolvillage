@@ -12,8 +12,11 @@
 (defn home-page []
   (layout/render "home.html"))
 
-(defn profile-page []
-  (layout/render "sage-profile.html" {:user (db/get-user 20)}))
+(defn profile-page [request]
+  (let [user (db/get-user-by-url (get-in request [:params :sage]))]
+    (if (nil? user)
+      (layout/render "404-error.html")
+      (layout/render "sage-profile.html" {:user user}))))
 
 (defn about-page []
   (layout/render "about.html"))
@@ -21,5 +24,7 @@
 (defroutes home-routes
   (route/resources "/")
   (GET "/" [] (home-page))
-  (GET "/ogaius" [] (profile-page))
-  (GET "/about" [] (about-page)))
+  (GET "/about" [] (about-page))
+
+  (GET "/:sage" [] profile-page)
+  )

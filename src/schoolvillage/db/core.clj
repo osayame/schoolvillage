@@ -35,6 +35,9 @@
 
 (defn get-recent-users [] (select-recent-users))
 
+(defn get-user-by-url [url]
+  (first (select-user-by-url {:url (str url)})))
+
 (defn set-new-status [id status]
   (update-status<! {:id id :status (str status)}))
 

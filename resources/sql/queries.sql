@@ -79,6 +79,10 @@ SELECT * from users
 where status = 'Approved' AND updated_at IS NOT NULL
 ORDER BY updated_at DESC
 
+-- name: select-user-by-url
+SELECT * from users
+where status = 'Approved' AND url = :url
+
 -- name: update-status<!
 -- Changes the status of a single user
 update users

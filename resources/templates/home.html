@@ -15,7 +15,7 @@
 </head>
 <body>
     {% block container %}
-    {% include "nav-container.html" %}
+    {% include "nav-container.html" with options="transparent"%}
 
     {% block main-container %}
     <div class="main-container">
@@ -160,87 +160,94 @@
                                 A week before my final exam, I used School Village to book a session with a great Accounting tutor. I would have flunked without you guys!
                             </p>
                             <span>
-                                <strong>James P.</strong> - via Miami, FL</span>
-                            </div>
+                                <strong>James P.</strong> - via Miami, FL
+                            </span>
                         </div>
-                        <div class="col-sm-4 text-center">
-                            <div class="feature boxed cast-shadow-light">
-                                <img alt="Pic" class="img-circle image-small inline-block mb24" src="img/girl-child.jpg" />
-                                <h4>"Customer For Life"</h4>
-                                <p>
-                                    My mom found me a great piano teacher on School Village. Every week, all she has to do is click on the site and pay for my session. She's less stressed now. Thank you!
-                                </p>
-                                <span>
-                                    <strong>Maria R.</strong> - via Miramar, FL</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <div class="feature boxed cast-shadow-light">
-                                    <img alt="Pic" class="img-circle image-small inline-block mb24" src="img/woman-headshot.jpg" />
-                                    <h4>"Almost too easy!"</h4>
-                                    <p>
-                                        It took me 5 minutes to book a Calculus tutor. She called me on the same day. My session was amazing, and I finally get integrals. Wow! Something that works, and isn't too expensive.
-                                    </p>
-                                    <span>
-                                        <strong>Jessica T.</strong> - via Hialeah, FL</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end of row-->
-                        </div>
-                        <!--end of container-->
-                    </section>
-                    <section class="image-bg parallax overlay">
-                        <div class="background-image-holder">
-                            <img alt="Background Image" class="background-image" src="img/home2.jpg">
-                        </div>
-                        <div class="container">
-                            <div class="row mb64 mb-xs-24">
-                                <div class="col-sm-6 col-md-5 text-right text-center-xs">
-                                    <h1 class="large mb8">1,000+</h1>
-                                    <h6 class="uppercase">Sessions scheduled through us</h6>
-                                </div>
-                                <div class="col-md-2 text-center hidden-sm hidden-xs">
-                                    <i class="ti-infinite icon icon-lg mt8 mt-xs-0"></i>
-                                </div>
-                                <div class="col-sm-6 col-md-5 text-center-xs">
-                                    <h1 class="large mb8">Limitless</h1>
-                                    <h6 class="uppercase">Tutoring sessions and learning</h6>
-                                </div>
-                            </div>
-                            <!--end of row-->
-                            <div class="row">
-                                <div class="col-sm-12 text-center">
-                                    <h3 class="mb40 mb-xs-24">Reliable, on-demand educators that 
-                                        <br /> guarantee you'll learn what you need to.</h3>
-                                        <a class="btn btn-lg btn-filled" href="/book">Book A Session Today</a>
-                                    </div>
-                                </div>
-                                <!--end of row-->
-                            </div>
-                            <!--end of container-->
-                        </section>
-                        {% endblock %}
-
-                        {% include "footer.html" %}
-
                     </div>
-                    {% endblock %}
+                    <div class="col-sm-4 text-center">
+                        <div class="feature boxed cast-shadow-light">
+                            <img alt="Pic" class="img-circle image-small inline-block mb24" src="img/girl-child.jpg" />
+                            <h4>"Customer For Life"</h4>
+                            <p>
+                                My mom found me a great piano teacher on School Village. Every week, all she has to do is click on the site and pay for my session. She's less stressed now. Thank you!
+                            </p>
+                            <span>
+                                <strong>Maria R.</strong> - via Miramar, FL
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <div class="feature boxed cast-shadow-light">
+                            <img alt="Pic" class="img-circle image-small inline-block mb24" src="img/woman-headshot.jpg" />
+                            <h4>"Almost too easy!"</h4>
+                            <p>
+                                It took me 5 minutes to book a Calculus tutor. She called me on the same day. My session was amazing, and I finally get integrals. Wow! Something that works, and isn't too expensive.
+                            </p>
+                            <span>
+                                <strong>Jessica T.</strong> - via Hialeah, FL
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </section>
+        <section class="image-bg parallax overlay">
+            <div class="background-image-holder">
+                <img alt="Background Image" class="background-image" src="img/home2.jpg">
+            </div>
+            <div class="container">
+                <div class="row mb64 mb-xs-24">
+                    <div class="col-sm-6 col-md-5 text-right text-center-xs">
+                        <h1 class="large mb8">1,000+</h1>
+                        <h6 class="uppercase">Sessions scheduled through us</h6>
+                    </div>
+                    <div class="col-md-2 text-center hidden-sm hidden-xs">
+                        <i class="ti-infinite icon icon-lg mt8 mt-xs-0"></i>
+                    </div>
+                    <div class="col-sm-6 col-md-5 text-center-xs">
+                        <h1 class="large mb8">Limitless</h1>
+                        <h6 class="uppercase">Tutoring sessions and learning</h6>
+                    </div>
+                </div>
+                <!--end of row-->
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h3 class="mb40 mb-xs-24">
+                            Reliable, on-demand educators who <br />
+                            guarantee you'll learn what you need to.
+                        </h3>
+                        <a class="btn btn-lg btn-filled" href="/book">
+                            Book A Session Today
+                        </a>
+                    </div>
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </section>
+        {% endblock %}
 
-                    <script src="/js/jquery.min.js"></script>
-                    <script src="/js/bootstrap.min.js"></script>
-                    <script src="/js/flickr.js"></script>
-                    <script src="/js/flexslider.min.js"></script>
-                    <script src="/js/lightbox.min.js"></script>
-                    <script src="/js/masonry.min.js"></script>
-                    <script src="/js/twitterfetcher.min.js"></script>
-                    <script src="/js/spectragram.min.js"></script>
-                    <script src="/js/ytplayer.min.js"></script>
-                    <script src="/js/countdown.min.js"></script>
-                    <script src="/js/smooth-scroll.min.js"></script>
-                    <script src="/js/parallax.js"></script>
-                    <script src="/js/scripts.js"></script>
-                    {% endblock %}
+        {% include "footer.html" %}
 
-                </body>
-                </html>
+    </div>
+    {% endblock %}
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/flickr.js"></script>
+    <script src="/js/flexslider.min.js"></script>
+    <script src="/js/lightbox.min.js"></script>
+    <script src="/js/masonry.min.js"></script>
+    <script src="/js/twitterfetcher.min.js"></script>
+    <script src="/js/spectragram.min.js"></script>
+    <script src="/js/ytplayer.min.js"></script>
+    <script src="/js/countdown.min.js"></script>
+    <script src="/js/smooth-scroll.min.js"></script>
+    <script src="/js/parallax.js"></script>
+    <script src="/js/scripts.js"></script>
+    {% endblock %}
+
+</body>
+</html>
