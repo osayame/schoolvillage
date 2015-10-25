@@ -23,7 +23,7 @@
   (layout/render "about.html"))
 
 (defn apply-page []
-  (layout/render "apply.html" {:endpoint "apply"}))
+  (layout/render "apply.html" {:endpoint "submit"}))
 
 (defn add-tutor [request]
   (db/add-user (get-in request [:params]))
@@ -41,5 +41,5 @@
   (GET "/:sage" [] profile-page)
   (GET "/thanks" [] (thanks-page))
 
-  (POST "/add" [] add-tutor)
+  (POST "/submit" [] add-tutor)
   )

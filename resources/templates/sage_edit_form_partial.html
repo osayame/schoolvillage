@@ -1,4 +1,11 @@
- <form class="form-horizontal" id="editform" role="form" method="post" action="/dbadmin/{{endpoint}}/{{id}}">
+{%if not endpoint|contains?:"submit"%}
+<form class="form-horizontal" id="editform" role="form" method="post" action="/dbadmin/{{endpoint}}/{{id}}">
+{%endif%}
+
+{%if endpoint|contains?:"submit"%}
+<form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}">
+{%endif%}
+
     <h3>Personal Info</h3>
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">First Name:</label>
@@ -113,7 +120,7 @@
     </div>
 
 
-    {%if not endpoint|contains?:"apply"%}
+    {%if not endpoint|contains?:"submit"%}
     <hr>
     <h3>Admin</h3>
 
