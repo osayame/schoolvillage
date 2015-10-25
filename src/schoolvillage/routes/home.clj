@@ -23,10 +23,10 @@
   (layout/render "about.html"))
 
 (defn apply-page []
-  (layout/render "apply.html" {:endpoint "add" :user {}}))
+  (layout/render "apply.html" {:endpoint "apply"}))
 
 (defn add-tutor [request]
-  (db/add-user2 (get-in request [:params]))
+  (db/add-user (get-in request [:params]))
   (response/redirect (str "/")))
 
 (defroutes home-routes

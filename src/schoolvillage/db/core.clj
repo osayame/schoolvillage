@@ -27,9 +27,6 @@
 (defn add-user [params]
   (insert-user<! (assoc params :id 0)))
 
-(defn add-user2 [params]
-  (insert-user2<! (assoc params :id 0)))
-
 (defn get-all-users [] (select-all-users))
 
 (defn get-flagged-users [] (select-flagged-users))
