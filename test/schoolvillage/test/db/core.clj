@@ -10,24 +10,23 @@
   :once
   (fn [f]
     (db/connect!)
-    (migrations/migrate ["migrate"])
     (f)))
 
 (deftest test-users
   (with-transaction [t-conn db/*conn*]
     (jdbc/db-set-rollback-only! t-conn)
-    (is (= 1 (db/create-user!
-               {:id         "1"
+    (is (= "FL" (:state (db/add-user
+               {:id         "0"
                 :first_name "Sam"
                 :last_name  "Smith"
                 :email      "sam.smith@example.com"
-                :pass       "pass"})))
-    (is (= [{:id         "1"
-             :first_name "Sam"
-             :last_name  "Smith"
-             :email      "sam.smith@example.com"
-             :pass       "pass"
-             :admin      nil
-             :last_login nil
-             :is_active  nil}]
-           (db/get-user {:id "1"})))))
+                :phone      "4049810115"
+                :city       "Miami"
+                :state      "FL"
+                :address1   "9871 W. Fern Lane"
+                :photo      ""
+                :zip        "33025"
+                :biography  "Smashing Lad"
+                :resume     ""
+                }))))
+    ))

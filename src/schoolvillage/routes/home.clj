@@ -16,8 +16,7 @@
 
 (defn profile-page [request]
   (let [user (db/get-user-by-url (get-in request [:params :sage]))]
-    (if (nil? user)
-      (layout/render "404-error.html")
+    (if (some? user)
       (layout/render "sage-profile.html" {:user user}))))
 
 (defn about-page []
@@ -29,4 +28,5 @@
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
   (GET "/:sage" [] profile-page)
+  (route/not-found (layout/error-page {:status "404"}))
   )

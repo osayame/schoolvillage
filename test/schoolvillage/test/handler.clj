@@ -3,8 +3,8 @@
             [ring.mock.request :refer :all]
             [schoolvillage.handler :refer :all]))
 
-(deftest test-app
-  (testing "main route"
+(deftest test-routes
+  (testing "home route"
     (let [response (app (request :get "/"))]
       (is (= 200 (:status response)))))
 
