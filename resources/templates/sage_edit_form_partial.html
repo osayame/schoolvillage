@@ -51,6 +51,22 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label class="control-label col-sm-2">Gender:</label>
+        <div class="col-sm-6">
+            <input class="radio-option" type="radio" name="gender" value="male"> Male</input>
+            <input class="radio-option checked" type="radio" name="gender" value="female"> Female</input>
+            <input class="radio-option checked" type="radio" name="gender" value="other"> Other</input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Birthday:</label>
+        <div class="col-sm-6">
+            <input type="date" name="birthday">
+        </div>
+    </div>
+
     <hr>
 
     <h3>Profile</h3>
@@ -95,6 +111,7 @@
 
         <button type="button" id="pick-resume" class="btn btn-primary btn-sm">Upload New Resume</button>
     </div>
+
 
     {%if not endpoint|contains?:"apply"%}
     <hr>
