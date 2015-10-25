@@ -26,7 +26,7 @@
   (layout/render "apply.html" {:endpoint "apply"}))
 
 (defn add-tutor [request]
-  (db/add-user2 (get-in request [:params]))
+  (db/add-user (get-in request [:params]))
   (response/redirect (str "/thanks")))
 
 (defn thanks-page []
@@ -39,10 +39,7 @@
   (GET "/about" [] (about-page))
   (GET "/apply" [] (apply-page))
   (GET "/:sage" [] profile-page)
-<<<<<<< HEAD
-=======
   (GET "/thanks" [] (thanks-page))
 
->>>>>>> Updates links on the home page
   (POST "/add" [] add-tutor)
   )

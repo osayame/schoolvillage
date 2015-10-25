@@ -21,6 +21,8 @@ INSERT INTO users (
   city,
   state,
   zip,
+  birthday,
+  gender,
   biography,
   created_at)
 VALUES (
@@ -36,6 +38,8 @@ VALUES (
   :city,
   :state,
   :zip,
+  :birthday,
+  :gender,
   :biography,
   CURRENT_TIMESTAMP)
 
