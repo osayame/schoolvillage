@@ -41,6 +41,50 @@ VALUES (
   :acuity_id,
   CURRENT_TIMESTAMP)
 
+-- name: insert-user2<!
+-- Inserts a single user
+INSERT INTO users (
+  id,
+  first_name,
+  last_name,
+  email,
+  phone,
+  status,
+  photo,
+  resume,
+  address1,
+  city,
+  state,
+  zip,
+  gender,
+  birthday,
+  url,
+  acuity_id,
+  created_at)
+VALUES (
+  nextval('users_serial'),
+  :first_name,
+  :last_name,
+  :email,
+  :phone,
+  'Pending'::user_status,
+  :photo,
+  :resume,
+  :address1,
+  :city,
+  :state,
+  :zip,
+  :gender,
+  :birthday,
+  :last_name,
+  :acuity_id,
+  CURRENT_TIMESTAMP)
+
+-- name: get-similar-urls
+-- Returns a list of urls similar to some string
+SELECT url FROM users
+WHERE url LIKE (str :url "%")
+
 -- name: update-user<!
 -- Updates a single user
 UPDATE users SET
