@@ -26,8 +26,11 @@
   (layout/render "apply.html" {:endpoint "apply"}))
 
 (defn add-tutor [request]
-  (db/add-user (get-in request [:params]))
-  (response/redirect (str "/")))
+  (db/add-user2 (get-in request [:params]))
+  (response/redirect (str "/thanks")))
+
+(defn thanks-page []
+  (layout/render "thanks.html"))
 
 (defroutes home-routes
   (route/resources "/")
@@ -36,5 +39,10 @@
   (GET "/about" [] (about-page))
   (GET "/apply" [] (apply-page))
   (GET "/:sage" [] profile-page)
+<<<<<<< HEAD
+=======
+  (GET "/thanks" [] (thanks-page))
+
+>>>>>>> Updates links on the home page
   (POST "/add" [] add-tutor)
   )
