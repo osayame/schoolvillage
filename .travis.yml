@@ -1,0 +1,12 @@
+language: clojure
+lein: lein2
+script: lein2 all test
+jdk:
+- openjdk7
+- oraclejdk7
+- oraclejdk8
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "a5085181-dc61-4038-b671-1ff170261786"
