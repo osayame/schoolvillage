@@ -28,5 +28,4 @@
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
   (GET "/:sage" [] profile-page)
-  (route/not-found (layout/error-page {:status "404"}))
   )

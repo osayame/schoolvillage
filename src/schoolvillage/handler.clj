@@ -76,4 +76,5 @@
              middleware-json/wrap-json-response
              middleware-json/wrap-json-params
              wrap-nested-params
-             wrap-params))
+             wrap-params
+             reload/wrap-reload))

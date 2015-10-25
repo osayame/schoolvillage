@@ -2,6 +2,7 @@
   (:require [schoolvillage.db.core :as db :refer :all]
             [schoolvillage.layout :as layout]
             [compojure.core :refer :all]
+            [compojure.route :as route]
             [ring.util.http-response :refer [ok]]
             [compojure.core :refer :all]
             [ring.middleware.basic-authentication :refer [wrap-basic-authentication]]
@@ -10,9 +11,10 @@
             ))
 
 (defn home-page []
+  (println "routing to dbadmin home")
   (layout/render "dbadmin/home.html" {:flagged (db/get-flagged-users)
-                              :pending (db/get-pending-users)
-                              :recent (db/get-recent-users)}))
+                                      :pending (db/get-pending-users)
+                                      :recent (db/get-recent-users)}))
 
 (defn edit-route [request]
   (let [user-id (get-in request [:params :id])]
@@ -33,8 +35,8 @@
 (defn approval-route [request]
   (let [user-id (get-in request [:params :id])]
     (layout/render "dbadmin/edit.html" {:endpoint (str "approve/" user-id)
-                                :user (db/get-user user-id)
-                                })))
+                                        :user (db/get-user user-id)
+                                        })))
 
 (defn redirect-home []
   (response/redirect (str "/dbadmin/")))
@@ -58,7 +60,6 @@
          (Integer. (get-in request [:params :id]))))))
 
 (defroutes dbadmin-routes
-  (GET " " [] (home-page))
   (GET "/" [] (home-page))
   (GET "/edit/:id" [] edit-route)
   (POST "/update/:id" [] update-route)
@@ -76,5 +77,7 @@
        (= pass "osa")))
 
 (defroutes admin-routes
-  (context "/dbadmin" [] dbadmin-routes))
+  (context "/dbadmin" [] dbadmin-routes)
+  (route/not-found (layout/error-page {:status "404"}))
+  )
 
