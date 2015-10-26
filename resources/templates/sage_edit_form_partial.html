@@ -1,10 +1,4 @@
-{%if not endpoint|contains?:"submit"%}
-<form class="form-horizontal" id="editform" role="form" method="post" action="/dbadmin/{{endpoint}}/{{id}}">
-{%endif%}
-
-{%if endpoint|contains?:"submit"%}
-<form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}">
-{%endif%}
+ <form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}/{{id}}">
 
     <h3>Personal Info</h3>
     <div class="form-group">
@@ -104,6 +98,20 @@
         <button type="button" id="pick-photo" class="btn btn-primary btn-sm">Upload New Photo</button>
     </div>
 
+    <hr>
+    <h3>Subjects</h3>
+
+    <div class="form-group">
+        <h5 class="text-center">Please Check all Subjects that you can help others master.</h5>
+        <br>
+        <div class="col-sm-10 col-md-offset-1 text-center btn-group" data-toggle="">
+            {% for subject in subjects %}
+            <label class="checkbox-inline">
+                <input class="category" type="checkbox" value="" name="{{subject.name}}">{{subject.name}}
+            </label>
+            {% endfor %}
+        </div>
+    </div>
 
     <hr>
     <h3>Documentation</h3>
@@ -118,7 +126,6 @@
 
         <button type="button" id="pick-resume" class="btn btn-primary btn-sm">Upload New Resume</button>
     </div>
-
 
     {%if not endpoint|contains?:"submit"%}
     <hr>
@@ -148,7 +155,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 text-center">
-            <input type="submit" class="" value="{{endpoint|capitalize}}">
+            <input type="submit" class="" value="{{context|capitalize}}">
         </div>
     </div>
 </form>

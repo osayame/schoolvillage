@@ -23,22 +23,31 @@
   (layout/render "about.html"))
 
 (defn apply-page []
-  (layout/render "apply.html" {:endpoint "submit"}))
+  (layout/render "apply.html" {:endpoint "submit" :context "submit" :subjects (db/get-all-subjects)}))
+
+(defn book-page []
+  (layout/render "book.html" {:subjects (db/get-all-subjects)}))
 
 (defn add-tutor [request]
-  (db/add-user (get-in request [:params]))
-  (response/redirect (str "/thanks")))
+  (println "!!!!!!!!!!!!!!!!!!!!!!!!!!! submit route"))
+
+(defn thanks-page []
+  (layout/render "thanks.html"))
 
 (defn thanks-page []
   (layout/render "thanks.html"))
 
 (defroutes home-routes
   (route/resources "/")
+  (POST "/submit" [] add-tutor)
   (GET "/" [] (home-page))
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
+  (GET "/book" [] (book-page))
+  (GET "/book/:subject" [] book-page)
   (GET "/apply" [] (apply-page))
-  (GET "/:sage" [] profile-page)
   (GET "/thanks" [] (thanks-page))
   (POST "/submit" [] add-tutor)
+  (GET "/:sage" [] profile-page)
   )
+

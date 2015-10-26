@@ -1,0 +1,38 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<div class="main-container">
+    <section class="page-title page-title-3 image-bg overlay parallax">
+        <div class="background-image-holder">
+            <img alt="Background Image" class="background-image" src="img/home2.jpg" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="uppercase mb0">Please Choose a Subject Below</h2>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+    </section>
+    
+    <section class="">
+        <div class="col-md-12">
+            <div class="col-md-6 col-md-offset-3 text-center content">
+                <ul class="list-inline">
+                    {% for subject in subjects %}
+                    <li>
+                    <a class="btn btn-" href="/book/{{subject.name}}">
+                            {{subject.name}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+    </section>
+</div>
+{%endblock%}
+
