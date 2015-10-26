@@ -28,8 +28,13 @@
 (defn book-page []
   (layout/render "book.html" {:subjects (db/get-all-subjects)}))
 
+(defn sages-page [request]
+  (let [subject (str (get-in request [:params :subject]))
+        sages (db/get-sages-by-subject subject)]
+      (layout/render "book_sages.html" {:sages sages :subject subject})))
+
 (defn add-tutor [request]
-  (println "!!!!!!!!!!!!!!!!!!!!!!!!!!! submit route"))
+   (db/add-user (get-in request [:params])))
 
 (defn thanks-page []
   (layout/render "thanks.html"))
@@ -43,11 +48,12 @@
   (GET "/" [] (home-page))
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
-  (GET "/book" [] (book-page))
-  (GET "/book/:subject" [] book-page)
   (GET "/apply" [] (apply-page))
+  (GET "/book/:subject" [] sages-page)
+
+  (GET "/book" [] (book-page))
   (GET "/thanks" [] (thanks-page))
-  (POST "/submit" [] add-tutor)
+
   (GET "/:sage" [] profile-page)
   )
 

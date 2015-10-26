@@ -105,6 +105,41 @@ UPDATE users
 SET subjects=subjects||ARRAY[(select id from subjects where name=:subject)]
 WHERE id=:id AND NOT subjects @> ARRAY[(select id from subjects where name=:subject)];
 
+-- name: insert-user-subject<!
+-- Inserts a new subject to the specified user's collection
+
+UPDATE users
+SET subjects=subjects||ARRAY[(select id from subjects where name=:subject)]
+WHERE id=:id AND NOT subjects @> ARRAY[(select id from subjects where name=:subject)];
+
+-- name: select-users-by-subject
+-- Selects all users for a specified subject
+
+select * from users
+where subjects @> ARRAY[(select id from subjects where name=:subject)]
+
+-----
+
+-- name: insert-subject<!
+-- Inserts a new subject with a specified parent
+
+INSERT INTO subjects(id, path, name)
+VALUES (
+nextval('subjects_serial'),
+(select path from subjects where name=:parent) || ARRAY[currval('subjects_serial')]::integer[],
+:name);
+
+-- name: select-subjects
+-- Selects all subjects
+SELECT * from subjects
+
+-- name: select-subject-by-name
+SELECT * from subjects
+where name = :name
+
+
+-----
+
 -- name: select-users-by-subject
 -- Selects all users for a specified subject
 

@@ -24,3 +24,4 @@ profiles.clj
 
 .idea/vcs.xml
 .idea
+*.xml
