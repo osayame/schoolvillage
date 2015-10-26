@@ -1,15 +1,5 @@
-<<<<<<< HEAD
  <form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}/{{id}}">
-=======
-{%if not endpoint|contains?:"submit"%}
-<form class="form-horizontal" id="editform" role="form" method="post" action="/dbadmin/{{endpoint}}/{{id}}">
-{%endif%}
 
-{%if endpoint|contains?:"submit"%}
-<form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}">
-{%endif%}
-
->>>>>>> hendrix
     <h3>Personal Info</h3>
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">First Name:</label>
@@ -137,12 +127,7 @@
         <button type="button" id="pick-resume" class="btn btn-primary btn-sm">Upload New Resume</button>
     </div>
 
-<<<<<<< HEAD
-    {%if not context|contains?:"submit"%}
-=======
-
     {%if not endpoint|contains?:"submit"%}
->>>>>>> hendrix
     <hr>
     <h3>Admin</h3>
 

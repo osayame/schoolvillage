@@ -29,9 +29,7 @@
   (layout/render "book.html" {:subjects (db/get-all-subjects)}))
 
 (defn add-tutor [request]
-  (println (get-in request [:params]))
-  (db/add-user (get-in request [:params]))
-  (response/redirect (str "/thanks")))
+  (println "!!!!!!!!!!!!!!!!!!!!!!!!!!! submit route"))
 
 (defn thanks-page []
   (layout/render "thanks.html"))
@@ -41,6 +39,7 @@
 
 (defroutes home-routes
   (route/resources "/")
+  (POST "/submit" [] add-tutor)
   (GET "/" [] (home-page))
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
@@ -48,7 +47,6 @@
   (GET "/book/:subject" [] book-page)
   (GET "/apply" [] (apply-page))
   (GET "/thanks" [] (thanks-page))
-  (POST "/submit" [] add-tutor)
   (GET "/:sage" [] profile-page)
   )
 
