@@ -1,4 +1,3 @@
-
 -- Table: users
 
 -- DROP TABLE users;
@@ -25,15 +24,21 @@ CREATE TABLE users
   photo text,
   url text,
   linkedin text,
+  acuity_id text,
+  birthday text,
+  gender text,
   CONSTRAINT users_pkey PRIMARY KEY (id),
-  CONSTRAINT unique_col UNIQUE (email, url)
+  CONSTRAINT unique_col UNIQUE (email, url),
+  CONSTRAINT unique_email UNIQUE (email),
+  CONSTRAINT unique_url UNIQUE (url)
 )
 WITH (
   OIDS=FALSE
 );
+ALTER TABLE users
+  OWNER TO postgres;
 
 --;;
-
 -- Index: first_name
 
 -- DROP INDEX first_name;
@@ -44,7 +49,6 @@ CREATE INDEX first_name
   (first_name COLLATE pg_catalog."default");
 
 --;;
-
 -- Index: id
 
 -- DROP INDEX id;
@@ -53,8 +57,4 @@ CREATE UNIQUE INDEX id
   ON users
   USING btree
   (id);
-
---;;
-
-create type user_status as enum ('Approved', 'Pending', 'Flagged');
 

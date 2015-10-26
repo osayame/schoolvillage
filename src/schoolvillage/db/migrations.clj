@@ -7,8 +7,6 @@
 (defn parse-ids [args]
   (map #(Long/parseLong %) (rest args)))
 
-(println (str "!!!!!!!!!!!!!! DATABASE URL"(env :database-url)))
-
 (defn migrate [args]
   (let [config {:store :database
                 :db {:connection-uri (to-jdbc-uri (:database-url env))}}]
