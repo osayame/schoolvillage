@@ -9,3 +9,17 @@ pom.xml
 profiles.clj
 /.env
 *.log
+
+.idea/workspace.xml
+
+.idea/uiDesigner.xml
+
+.idea/compiler.xml
+
+.idea/copyright/profiles_settings.xml
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/vcs.xml
