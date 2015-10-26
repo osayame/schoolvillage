@@ -55,6 +55,8 @@
      pool-spec
      :jdbc-url (env :database-url))))
 
+(println (str "!!!!!!!!!!!!!! DATABASE URL"(env :database-url)))
+
 (defn disconnect! []
   (conman/disconnect! *conn*))
 
