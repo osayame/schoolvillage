@@ -25,6 +25,9 @@
 (defn apply-page []
   (layout/render "apply.html" {:endpoint "apply"}))
 
+(defn book-page []
+  (layout/render "book.html" {:endpoint "apply"}))
+
 (defn add-tutor [request]
   (db/add-user (get-in request [:params]))
   (response/redirect (str "/")))
@@ -37,4 +40,7 @@
   (GET "/apply" [] (apply-page))
   (GET "/:sage" [] profile-page)
   (POST "/add" [] add-tutor)
+  (GET "/book" [] (book-page))
+  (GET "/book/:subject" [] subject-page)
   )
+

@@ -95,8 +95,20 @@ set status = :status::user_status, updated_at = CURRENT_TIMESTAMP
 where id = :id
 
 
----
+----
 
+-- name: insert-subject<!
+-- Inserts a single subject
+INSERT INTO subjects(id, path, name)
+VALUES (nextval('subjects_serial'), :path, :name);
+
+
+-- name: select-subjects
+-- Selects all subjects
+SELECT * from subjects
+
+
+-----
 
 -- name: all-subsidiaries
 SELECT subsidiaries from users
