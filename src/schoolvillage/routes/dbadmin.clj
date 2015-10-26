@@ -46,7 +46,6 @@
                                         :user (db/get-user user-id)
                                         })))
 
->>>>>>> subjects
 (defn redirect-home []
   (response/redirect (str "/dbadmin/")))
 
