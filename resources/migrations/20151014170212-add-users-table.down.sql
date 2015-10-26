@@ -1,1 +1,1 @@
-DROP TABLE pblic.users;
+DROP TABLE users;
