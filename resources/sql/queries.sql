@@ -21,6 +21,8 @@ INSERT INTO users (
   city,
   state,
   zip,
+  birthday,
+  gender,
   biography,
   created_at)
 VALUES (
@@ -36,8 +38,16 @@ VALUES (
   :city,
   :state,
   :zip,
+  :birthday,
+  :gender,
   :biography,
   CURRENT_TIMESTAMP)
+
+
+-- name: get-similar-urls
+-- Returns a list of urls similar to some string
+SELECT url FROM users
+WHERE url LIKE (str :url "%")
 
 -- name: update-user<!
 -- Updates a single user

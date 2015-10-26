@@ -18,7 +18,7 @@
 
 (defn edit-route [request]
   (let [user-id (get-in request [:params :id])]
-    (layout/render "dbadmin/edit.html" {:endpoint (str "update/" user-id) :user (db/get-user user-id)})))
+    (layout/render "dbadmin/edit.html" {:endpoint "update" :id user-id :user (db/get-user user-id)})))
 
 
 (defn update-route [request]
@@ -30,14 +30,13 @@
   (response/redirect (str "/dbadmin/")))
 
 (defn new-route [request]
-  (layout/render "dbadmin/edit.html" {:endpoint "add" :user {}}))
+  (layout/render "dbadmin/edit.html" {:endpoint "add"}))
 
 (defn approval-route [request]
   (let [user-id (get-in request [:params :id])]
-    (layout/render "dbadmin/edit.html" {:endpoint (str "approve/" user-id)
-                                        :user (db/get-user user-id)
-                                        })))
-
+    (layout/render "dbadmin/edit.html" {:endpoint "approve" :id user-id
+                                :user (db/get-user user-id)
+                                })))
 (defn redirect-home []
   (response/redirect (str "/dbadmin/")))
 

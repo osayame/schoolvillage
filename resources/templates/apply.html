@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+{% block content %}
+
+<div class="main-container">
+    <section class="page-title page-title-3 image-bg overlay parallax">
+        <div class="background-image-holder">
+            <img alt="Background Image" class="background-image" src="img/meeting.jpg" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="uppercase mb0">Teach Other, Make Profit</h2>
+                </div>
+            </div>
+            <!--end of row-->
+        </section>
+        <section class="">
+            <div class="col-md-12">
+                <h4 class="uppercase text-center">Apply to Become A Tutor</h4>
+                <div class="col-md-10" >
+                    {% include "sage_edit_form_partial.html" %}
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% endblock %}

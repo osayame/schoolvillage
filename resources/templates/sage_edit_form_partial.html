@@ -1,0 +1,154 @@
+{%if not endpoint|contains?:"submit"%}
+<form class="form-horizontal" id="editform" role="form" method="post" action="/dbadmin/{{endpoint}}/{{id}}">
+{%endif%}
+
+{%if endpoint|contains?:"submit"%}
+<form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}">
+{%endif%}
+
+    <h3>Personal Info</h3>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">First Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="first_name" value="{{user.first_name}}" required autofocus>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Last Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="last_name" value="{{user.last_name}}" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" name="email" id="email" value="{{user.email}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="phone">Phone:</label>
+        <div class="col-sm-10">
+            <input type="tel" class="form-control" name="phone" value="{{user.phone}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Address:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="address1" value="{{user.address1}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">City:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="city" value="{{user.city}}">
+        </div>
+    </div>
+
+    {% include "dbadmin/states_dropdown_partial.html" %}
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Zip:</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="zip" value="{{user.zip}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Gender:</label>
+        <div class="col-sm-6">
+            <input class="radio-option" type="radio" name="gender" value="male"> Male</input>
+            <input class="radio-option checked" type="radio" name="gender" value="female"> Female</input>
+            <input class="radio-option checked" type="radio" name="gender" value="other"> Other</input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Birthday:</label>
+        <div class="col-sm-6">
+            <input type="date" name="birthday">
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>Profile</h3>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Biography:</label>
+
+        <div class="col-sm-10">
+            <textarea name="biography" class="tinymce" style="height:50%">{{user.biography}}</textarea>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Photo</label>
+        <div class="col-sm-6">
+            <input id="photo" type="hidden" name="photo" value="{{user.photo}}">
+            <img width="150" height="150" id="user-photo" src=
+            {% if user.photo|empty? %}
+            "/img/default-photo.jpeg"
+            {%else%}
+            "https://s3.amazonaws.com/schoolvillage/photos/{{user.photo}}"
+            {%endif%}>
+        </div>
+        <!-- <div class="clearfix"></div> -->
+        <!-- <span class="help-block">Don't worry about your photo's dimensions. We'll automatically resize it to ensure it fits.</span> -->
+        <button type="button" id="pick-photo" class="btn btn-primary btn-sm">Upload New Photo</button>
+    </div>
+
+
+    <hr>
+    <h3>Documentation</h3>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Resume</label>
+        <input id="resume" type="hidden" name="resume" value="{{user.resume}}">
+
+        {% if user.resume|not-empty %}
+        <a href="https://s3.amazonaws.com/schoolvillage/resumes/{{user.resume}}" target="_blank" class="btn btn-success">View Resume</a>
+        {%endif%}
+
+        <button type="button" id="pick-resume" class="btn btn-primary btn-sm">Upload New Resume</button>
+    </div>
+
+
+    {%if not endpoint|contains?:"submit"%}
+    <hr>
+    <h3>Admin</h3>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">URL:</label>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">http://schoolvillage.net/</span>
+            <input name="url" style="width:70%" type="text" class="form-control required" value="{{user.url}}" placeholder="dwade">
+        </div>
+        {% if errors.url %}
+        <div class="alert alert-danger">{{errors.url|join}}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Acuity ID:</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="acuity_id" value="{{user.acuity_id}}">
+        </div>
+    </div>
+    {%endif%}
+
+    <hr>
+    <br>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10 text-center">
+            <input type="submit" class="" value="{{endpoint|capitalize}}">
+        </div>
+    </div>
+</form>

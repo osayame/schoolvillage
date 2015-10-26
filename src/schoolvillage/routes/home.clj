@@ -22,10 +22,27 @@
 (defn about-page []
   (layout/render "about.html"))
 
+(defn apply-page []
+  (layout/render "apply.html" {:endpoint "submit"}))
+
+(defn add-tutor [request]
+  (db/add-user (get-in request [:params]))
+  (response/redirect (str "/thanks")))
+
+(defn thanks-page []
+  (layout/render "thanks.html"))
+
 (defroutes home-routes
   (route/resources "/")
   (GET "/" [] (home-page))
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
+  (GET "/apply" [] (apply-page))
   (GET "/:sage" [] profile-page)
+<<<<<<< HEAD
+=======
+  (GET "/thanks" [] (thanks-page))
+
+  (POST "/submit" [] add-tutor)
+>>>>>>> hendrix
   )
