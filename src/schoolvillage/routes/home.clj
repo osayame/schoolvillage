@@ -23,14 +23,18 @@
   (layout/render "about.html"))
 
 (defn apply-page []
-  (layout/render "apply.html" {:endpoint "apply" :subjects (db/get-all-subjects)}))
+  (layout/render "apply.html" {:endpoint "submit" :context "submit" :subjects (db/get-all-subjects)}))
 
 (defn book-page []
-  (layout/render "book.html" {:endpoint "apply" :subjects (db/get-all-subjects)}))
+  (layout/render "book.html" {:subjects (db/get-all-subjects)}))
 
 (defn add-tutor [request]
+  (println (get-in request [:params]))
   (db/add-user (get-in request [:params]))
   (response/redirect (str "/")))
+
+(defn thanks-page []
+  (layout/render "thanks.html"))
 
 (defroutes home-routes
   (route/resources "/")
@@ -40,7 +44,8 @@
   (GET "/book" [] (book-page))
   (GET "/book/:subject" [] book-page)
   (GET "/apply" [] (apply-page))
+  (GET "/thanks" [] (thanks-page))
+  (POST "/submit" [] add-tutor)
   (GET "/:sage" [] profile-page)
-  (POST "/add" [] add-tutor)
   )
 
