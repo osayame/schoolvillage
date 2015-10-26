@@ -39,10 +39,6 @@
   (GET "/about" [] (about-page))
   (GET "/apply" [] (apply-page))
   (GET "/:sage" [] profile-page)
-<<<<<<< HEAD
-=======
   (GET "/thanks" [] (thanks-page))
-
   (POST "/submit" [] add-tutor)
->>>>>>> hendrix
   )
