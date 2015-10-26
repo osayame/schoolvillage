@@ -107,6 +107,9 @@ VALUES (nextval('subjects_serial'), :path, :name);
 -- Selects all subjects
 SELECT * from subjects
 
+-- name: select-subject-by-name
+SELECT * from subjects
+where name = :name
 
 -----
 

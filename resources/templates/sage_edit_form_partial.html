@@ -87,13 +87,12 @@
     <div class="form-group">
         <h5 class="text-center">Please Check all Subjects that you can help others master.</h5>
         <br>
-        <div class="col-sm-10 text-center btn-group" data-toggle="">
-            <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="arts_and_cultural">Arts/Cultural</label>
-            <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="civic_community">Civic/Community</label>
-            <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="environmental">Environmental</label>
-            <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="health_human_services">Health and Human Services</label>
-            <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="higher_ed">Higher Ed</label>
-            <label class="checkbox-inline"><input class="category" type="checkbox" checked value="" name="k12">K12</label>
+        <div class="col-sm-10 col-md-offset-1 text-center btn-group" data-toggle="">
+            {% for subject in subjects %}
+            <label class="checkbox-inline">
+                <input class="category" type="checkbox" value="" name="{{subject.name}}">{{subject.name}}
+            </label>
+            {% endfor %}
         </div>
     </div>
 

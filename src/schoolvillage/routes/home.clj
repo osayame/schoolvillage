@@ -23,10 +23,10 @@
   (layout/render "about.html"))
 
 (defn apply-page []
-  (layout/render "apply.html" {:endpoint "apply"}))
+  (layout/render "apply.html" {:endpoint "apply" :subjects (db/get-all-subjects)}))
 
 (defn book-page []
-  (layout/render "book.html" {:endpoint "apply"}))
+  (layout/render "book.html" {:endpoint "apply" :subjects (db/get-all-subjects)}))
 
 (defn add-tutor [request]
   (db/add-user (get-in request [:params]))
@@ -37,10 +37,10 @@
   (GET "/" [] (home-page))
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
+  (GET "/book" [] (book-page))
+  (GET "/book/:subject" [] book-page)
   (GET "/apply" [] (apply-page))
   (GET "/:sage" [] profile-page)
   (POST "/add" [] add-tutor)
-  (GET "/book" [] (book-page))
-  (GET "/book/:subject" [] subject-page)
   )
 
