@@ -1,9 +1,8 @@
 (ns schoolvillage.db.core
-  (:require
-   [cheshire.core :refer [generate-string parse-string]]
-   [clojure.java.jdbc :as jdbc]
-   [conman.core :as conman]
-   [environ.core :refer [env]])
+  (:require [cheshire.core :refer [generate-string parse-string]]
+            [clojure.java.jdbc :as jdbc]
+            [conman.core :as conman]
+            [environ.core :refer [env]])
   (:import org.postgresql.util.PGobject
            org.postgresql.jdbc4.Jdbc4Array
            clojure.lang.IPersistentMap
@@ -29,6 +28,8 @@
 
 (defn get-all-users [] (select-all-users))
 
+(defn get-all-subjects [] (select-subjects))
+
 (defn get-flagged-users [] (select-flagged-users))
 
 (defn get-pending-users [] (select-pending-users))
@@ -38,22 +39,25 @@
 (defn get-user-by-url [url]
   (first (select-user-by-url {:url (str url)})))
 
+(defn get-sages-by-subject [subject]
+  (select-users-by-subject {:subject subject}))
+
 (defn set-new-status [id status]
   (update-status<! {:id id :status (str status)}))
 
 (def pool-spec
-  {:adapter    :postgresql
-   :init-size  1
-   :min-idle   1
-   :max-idle   4
+  {:adapter :postgresql
+   :init-size 1
+   :min-idle 1
+   :max-idle 4
    :max-active 32})
 
 (defn connect! []
   (conman/connect!
-   *conn*
-   (assoc
-     pool-spec
-     :jdbc-url (env :database-url))))
+    *conn*
+    (assoc
+      pool-spec
+      :jdbc-url (env :database-url))))
 
 (defn disconnect! []
   (conman/disconnect! *conn*))
@@ -73,18 +77,18 @@
 
   PGobject
   (result-set-read-column [pgobj _metadata _index]
-                          (let [type  (.getType pgobj)
-                                value (.getValue pgobj)]
-                            (case type
-                              "json" (parse-string value true)
-                              "jsonb" (parse-string value true)
-                              "citext" (str value)
-                              value))))
+    (let [type (.getType pgobj)
+          value (.getValue pgobj)]
+      (case type
+        "json" (parse-string value true)
+        "jsonb" (parse-string value true)
+        "citext" (str value)
+        value))))
 
 (extend-type java.util.Date
   jdbc/ISQLParameter
   (set-parameter [v ^PreparedStatement stmt idx]
-                 (.setTimestamp stmt idx (Timestamp. (.getTime v)))))
+    (.setTimestamp stmt idx (Timestamp. (.getTime v)))))
 
 (defn to-pg-json [value]
   (doto (PGobject.)

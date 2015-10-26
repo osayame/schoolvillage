@@ -1,0 +1,65 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<div class="main-container">
+    <section class="page-title page-title-4 image-bg overlay parallax">
+        <div class="background-image-holder">
+            <img alt="Background Image" class="background-image" src="/img/home2.jpg" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="uppercase mb0">Please Choose Your {{subject|capitalize}} Tutor Below</h2>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+    </section>
+    <section class="">
+        <div class="container">
+            <div class="row masonry-loader">
+                <div class="col-sm-12 text-center">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            <div class="row masonry mb40">
+                {% for sage in sages %}
+
+                <div class="col-sm-4 post-snippet masonry-item">
+
+                    <div class="inner">
+                        <a href="/{{sage.url}}">
+                            <img class="img-thumbnail" alt="Tutor Photo" src="https://s3.amazonaws.com/schoolvillage/photos/{{sage.photo}}" width="300" height="300"/>
+                        </a>
+                        <a href="#">
+                            <h4 class="mb0">
+                                <a href="/{{sage.url}}">
+                                    {{sage.first_name}} {{sage.last_name}}
+                                </a>
+                            </h4>
+                        </a>
+                        <hr>
+                        {{sage.biography}}
+                        <br/>
+                        <br/>
+
+                        <a class="btn btn-sm" href="/{{sage.url}}">Read More</a>
+                        <ul class="tags pull-right">
+                            <li>
+                                <a class="btn btn-sm btn-icon" href="{{user.linkedin}}">
+                                    <i class="ti-linkedin"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+</div>
+{%endblock%}
