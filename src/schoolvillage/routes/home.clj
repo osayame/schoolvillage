@@ -31,7 +31,10 @@
 (defn add-tutor [request]
   (println (get-in request [:params]))
   (db/add-user (get-in request [:params]))
-  (response/redirect (str "/")))
+  (response/redirect (str "/thanks")))
+
+(defn thanks-page []
+  (layout/render "thanks.html"))
 
 (defn thanks-page []
   (layout/render "thanks.html"))

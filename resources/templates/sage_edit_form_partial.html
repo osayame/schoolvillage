@@ -1,4 +1,15 @@
+<<<<<<< HEAD
  <form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}/{{id}}">
+=======
+{%if not endpoint|contains?:"submit"%}
+<form class="form-horizontal" id="editform" role="form" method="post" action="/dbadmin/{{endpoint}}/{{id}}">
+{%endif%}
+
+{%if endpoint|contains?:"submit"%}
+<form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}">
+{%endif%}
+
+>>>>>>> hendrix
     <h3>Personal Info</h3>
     <div class="form-group">
         <label class="control-label col-sm-2" for="name">First Name:</label>
@@ -48,6 +59,22 @@
         <label class="control-label col-sm-2">Zip:</label>
         <div class="col-sm-3">
             <input type="text" class="form-control" name="zip" value="{{user.zip}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Gender:</label>
+        <div class="col-sm-6">
+            <input class="radio-option" type="radio" name="gender" value="male"> Male</input>
+            <input class="radio-option checked" type="radio" name="gender" value="female"> Female</input>
+            <input class="radio-option checked" type="radio" name="gender" value="other"> Other</input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Birthday:</label>
+        <div class="col-sm-6">
+            <input type="date" name="birthday">
         </div>
     </div>
 
@@ -110,7 +137,12 @@
         <button type="button" id="pick-resume" class="btn btn-primary btn-sm">Upload New Resume</button>
     </div>
 
+<<<<<<< HEAD
     {%if not context|contains?:"submit"%}
+=======
+
+    {%if not endpoint|contains?:"submit"%}
+>>>>>>> hendrix
     <hr>
     <h3>Admin</h3>
 
