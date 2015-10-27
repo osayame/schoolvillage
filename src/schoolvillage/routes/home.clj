@@ -31,10 +31,11 @@
 (defn sages-page [request]
   (let [subject (str (get-in request [:params :subject]))
         sages (db/get-sages-by-subject subject)]
-      (layout/render "book_sages.html" {:sages sages :subject subject})))
+    (layout/render "book_sages.html" {:sages sages :subject subject})))
 
 (defn add-tutor [request]
-   (db/add-user (get-in request [:params])))
+  (db/add-user (get-in request [:params]))
+  (response/redirect "/thanks"))
 
 (defn thanks-page []
   (layout/render "thanks.html"))

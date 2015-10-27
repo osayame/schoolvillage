@@ -2,7 +2,8 @@
   (:require [cheshire.core :refer [generate-string parse-string]]
             [clojure.java.jdbc :as jdbc]
             [conman.core :as conman]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [clojure.walk :refer :all])
   (:import org.postgresql.util.PGobject
            org.postgresql.jdbc4.Jdbc4Array
            clojure.lang.IPersistentMap
@@ -23,8 +24,16 @@
 (defn update-user [params]
   (update-user<! (assoc params :id (Integer. (:id params)))))
 
+(defn add-user-subject [id subject]
+  (insert-user-subject<! {:id (Integer. id) :subject subject}))
+
+(defn add-subjects [id args]
+    (doseq [x (mapv str args)]
+      (add-user-subject id x)))
+
 (defn add-user [params]
-  (insert-user<! (assoc params :id 0)))
+  (let [id (Integer. (:id (insert-user<! (assoc params :id 0))))]
+    (add-subjects id (keys(stringify-keys params)))))
 
 (defn get-all-subjects [] (select-subjects))
 
