@@ -21,8 +21,9 @@
     (layout/render "dbadmin/edit.html" {:endpoint "dbadmin/update"
                                         :context "update"
                                         :id user-id
+                                        :subjects (db/get-all-subjects)
                                         :user (db/get-user user-id)}
-                   :subjects (db/get-all-subjects))))
+                                        )))
 
 
 (defn update-route [request]

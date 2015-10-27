@@ -22,10 +22,12 @@
   (first (select-user {:id (Integer. id)})))
 
 (defn update-user [params]
-  (update-user<! (assoc params :id (Integer. (:id params)))))
+  (let [id (Integer. (:id(update-user<! (assoc params :id (Integer. (:id params))))))]
+    (add-subjects id (keys(stringify-keys params)))))
 
 (defn add-user-subject [id subject]
-  (insert-user-subject<! {:id (Integer. id) :subject subject}))
+  (if (not-empty (select-subject-id-by-name {:subject subject}))
+    (insert-user-subject<! {:id (Integer. id) :subject subject})))
 
 (defn add-subjects [id args]
     (doseq [x (mapv str args)]
