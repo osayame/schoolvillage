@@ -30,7 +30,9 @@
                 </div>
                 <div class="col-md-6 col-md-offset-1 col-sm-5 col-sm-offset-1">
                     <h4 class="uppercase">About {{user.first_name}}</h4>
-                    {{user.biography}}
+                    {% safe %}{{user.biography}}{% endsafe %}
+
+
                     <br/>
                     <br/>
                     <hr>
