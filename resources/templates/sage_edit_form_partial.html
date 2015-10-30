@@ -1,8 +1,8 @@
-{%if not endpoint|contains?:"submit"%}
-<form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}/{{id}}">
+{%if context|contains?:"submit"%}
+<form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}">
     {%else%}
 
-    <form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}">
+    <form class="form-horizontal" id="editform" role="form" method="post" action="/{{endpoint}}/{{id}}">
         {%endif%}
         <h3>Personal Info</h3>
 
@@ -147,7 +147,7 @@
         </div>
         <hr>
         
-        {%if context|contains?:"submit"%}        
+        {%if not context|contains?:"submit"%}        
         <h3>Admin</h3>
 
         <div class="form-group">
@@ -171,9 +171,9 @@
             </div>
         </div>
         <hr>
-        {%endif%}
+        <br/>
 
-        <br>
+        {%endif%}
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10 text-center">
