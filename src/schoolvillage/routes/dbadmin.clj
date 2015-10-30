@@ -10,6 +10,10 @@
             [ring.util.response :as response]
             ))
 
+(defn approved?-for-subject [user subject]
+  (.contains (:subjects user) (:id subject)))
+
+
 (defn home-page []
   (println "routing to dbadmin home")
   (layout/render "dbadmin/home.html" {:flagged (db/get-flagged-users)
@@ -17,14 +21,13 @@
                                       :recent (db/get-recent-users)}))
 
 (defn edit-route [request]
-  (let [user-id (get-in request [:params :id])]
+  (let [user (db/get-user (get-in request [:params :id]))]
     (layout/render "dbadmin/edit.html" {:endpoint "dbadmin/update"
                                         :context "update"
-                                        :id user-id
-                                        :subjects (db/get-all-subjects)
-                                        :user (db/get-user user-id)}
+                                        :id (:id user)
+                                        :subjects (map #(assoc % :approved (approved?-for-subject user %)) (db/get-all-subjects))
+                                        :user user}
                                         )))
-
 
 (defn update-route [request]
   (db/update-user (get-in request [:params]))
@@ -89,4 +92,3 @@
   (context "/dbadmin" [] dbadmin-routes)
   (route/not-found (layout/error-page {:status "404"}))
   )
-
