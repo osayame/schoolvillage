@@ -10,6 +10,8 @@
             [ring.util.response :as response :refer :all]
             ))
 
+(defn redirect-home [] (redirect (str "/dbadmin/")))
+
 (defn approved?-for-subject [user subject]
   (.contains (:subjects user) (:id subject)))
 
@@ -41,8 +43,6 @@
                                       :context "add"
                                       :subjects (db/get-all-subjects)}))
 
-(defn redirect-home [] (redirect (str "/dbadmin/")))
-
 (defn approve-route [request]
   (let [user-id (get-in request [:params :id])]
     (db/set-new-status (Integer. user-id) "Approved"))
@@ -64,7 +64,6 @@
   (POST "/add" [] add-route)
   (GET "/approve/:id" [] edit-route)
   (POST "/approve/:id" [] approve-route)
-  (POST "/flag/:id" [] flag-route)
   (GET "/sages" [] sages-route)
   (GET "/state/:id" [] get-state-route)
   )
