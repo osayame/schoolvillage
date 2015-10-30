@@ -7,12 +7,11 @@
             [compojure.core :refer :all]
             [ring.middleware.basic-authentication :refer [wrap-basic-authentication]]
             [clojure.java.io :as io]
-            [ring.util.response :as response]
+            [ring.util.response :as response :refer :all]
             ))
 
 (defn approved?-for-subject [user subject]
   (.contains (:subjects user) (:id subject)))
-
 
 (defn home-page []
   (println "routing to dbadmin home")
@@ -31,36 +30,22 @@
 
 (defn update-route [request]
   (db/update-user (get-in request [:params]))
-  (response/redirect (str "/dbadmin/edit/" (get-in request [:params :id]))))
+  (redirect (str "/dbadmin/edit/" (get-in request [:params :id]))))
 
 (defn add-route [request]
   (db/add-user (get-in request [:params]))
-  (response/redirect (str "/dbadmin/")))
+  (redirect-home))
 
 (defn new-route [request]
   (layout/render "dbadmin/edit.html" {:endpoint "dbadmin/add"
                                       :context "add"
                                       :subjects (db/get-all-subjects)}))
 
-(defn approval-route [request]
-  (let [user-id (get-in request [:params :id])]
-    (layout/render "dbadmin/edit.html" {:endpoint "dbadmin/approve"
-                                        :context "approve"
-                                        :id user-id
-                                        :user (db/get-user user-id)
-                                        })))
-
-(defn redirect-home []
-  (response/redirect (str "/dbadmin/")))
+(defn redirect-home [] (redirect (str "/dbadmin/")))
 
 (defn approve-route [request]
   (let [user-id (get-in request [:params :id])]
     (db/set-new-status (Integer. user-id) "Approved"))
-  (redirect-home))
-
-(defn flag-route [request]
-  (let [user-id (get-in request [:params :id])]
-    (db/set-new-status (Integer. user-id) "Flagged"))
   (redirect-home))
 
 (defn sages-route [request]
@@ -77,7 +62,7 @@
   (POST "/update/:id" [] update-route)
   (GET "/new" [] new-route)
   (POST "/add" [] add-route)
-  (GET "/approve/:id" [] approval-route)
+  (GET "/approve/:id" [] edit-route)
   (POST "/approve/:id" [] approve-route)
   (POST "/flag/:id" [] flag-route)
   (GET "/sages" [] sages-route)

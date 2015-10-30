@@ -13,7 +13,7 @@
 <div class="panel panel-default">
 
     <div class="panel-header">
-        {% if endpoint|contains?:"approve" %}
+        {% if not user.status|contains?:"Approved" %}
         <div id="approve-form" class="pull-left">
             <form style="display:inline" role="form" method="get" action="">
                 <!-- <button type="" class="btn btn-danger btn-sm btn-reject">
