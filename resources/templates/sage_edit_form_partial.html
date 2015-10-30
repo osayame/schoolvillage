@@ -145,9 +145,9 @@
 
             <button type="button" id="pick-resume" class="btn btn-primary btn-sm">Upload New Resume</button>
         </div>
-
-        {%if not endpoint|contains?:"submit"%}
         <hr>
+        
+        {%if context|contains?:"submit"%}        
         <h3>Admin</h3>
 
         <div class="form-group">
@@ -170,9 +170,9 @@
                 <input type="text" class="form-control" name="acuity_id" value="{{user.acuity_id}}">
             </div>
         </div>
+        <hr>
         {%endif%}
 
-        <hr>
         <br>
 
         <div class="form-group">

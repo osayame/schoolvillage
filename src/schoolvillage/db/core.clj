@@ -18,38 +18,6 @@
 
 (conman/bind-connection *conn* "sql/queries.sql")
 
-(extend-protocol jdbc/IResultSetReadColumn
-  org.postgresql.jdbc4.Jdbc4Array
-  (result-set-read-column [pgobj metadata idx]
-                          (vec (.getArray pgobj))))
-
-(defn value-to-json-pgobject [value]
-  (doto (PGobject.)
-    (.setType "json")
-    (.setValue (generate-string value))))
-
-(extend-protocol jdbc/ISQLValue
-  clojure.lang.IPersistentMap
-  (sql-value [value] (value-to-json-pgobject value))
-
-  clojure.lang.IPersistentVector
-  (sql-value [value] (value-to-json-pgobject value)))
-
-(defn my-value-reader [key value]
-  (if (= key :array)
-    (clojure.string/split value #",")
-    value))
-
-(extend-protocol jdbc/IResultSetReadColumn
-  PGobject
-  (result-set-read-column [pgobj metadata idx]
-                          (let [type  (.getType pgobj)
-                                value (.getValue pgobj)]
-                            (case type
-                              "jsonb" (parse-string value)
-                              :else value))))
-
-
 (defn get-user [id]
   (first (select-user {:id (Integer. id)})))
 
@@ -103,8 +71,6 @@
     (assoc
       pool-spec
       :jdbc-url (env :database-url))))
-
-(println (str "!!!!!!!!!!!!!! DATABASE URL"(env :database-url)))
 
 (defn disconnect! []
   (conman/disconnect! *conn*))

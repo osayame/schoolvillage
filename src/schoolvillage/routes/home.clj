@@ -51,7 +51,6 @@
   (GET "/about" [] (about-page))
   (GET "/apply" [] (apply-page))
   (GET "/book/:subject" [] sages-page)
-
   (GET "/book" [] (book-page))
   (GET "/thanks" [] (thanks-page))
 
