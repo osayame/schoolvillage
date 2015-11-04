@@ -127,6 +127,7 @@ WHERE id=:id AND NOT subjects @> ARRAY[(select id from subjects where name=:subj
 select * from users
 where subjects @> ARRAY[(select id from subjects where name=:subject)]
 AND status = 'Approved'
+AND zip = :zipcode
 
 -----
 

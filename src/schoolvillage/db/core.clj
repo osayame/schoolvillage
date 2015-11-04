@@ -37,7 +37,7 @@
   (let [id (Integer. (:id (insert-user<! (assoc params :id 0))))]
     (add-subjects id (keys(stringify-keys params)))))
 
-(defn get-all-subjects [] (select-subjects))
+(defn get-all-subjects [zipcode] (select-subjects))
 
 (defn get-all-users [] (select-all-users))
 
@@ -52,8 +52,8 @@
 (defn get-user-by-url [url]
   (first (select-user-by-url {:url (str url)})))
 
-(defn get-sages-by-subject [subject]
-  (select-users-by-subject {:subject subject}))
+(defn get-sages-by-subject [subject & [zip]]
+  (select-users-by-subject {:subject subject :zipcode (or zip "")}))
 
 (defn set-new-status [id status]
   (update-status<! {:id id :status (str status)}))
