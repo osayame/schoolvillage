@@ -1,21 +1,7 @@
-{% extends "home.html" %}
-{% block content %}
+{% extends "box_partial.html" %}
 
-<div class="main-container">
-    <section class="cover fullscreen image-bg overlay parallax">
-        <div class="background-image-holder">
-            <img alt="image" class="background-image" src="img/cover11.jpg" />
-        </div>
-        <div class="container v-align-transform">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <h2>Thank you for applying! We will contact you soon!</h2>
-                </div>
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </section>
-</div>
+{% block top-section %}
 
-{% endblock %}
+<h2>Thank you for applying! We will contact you soon!</h2>
+
+{%endblock%}

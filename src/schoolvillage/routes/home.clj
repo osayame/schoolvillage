@@ -24,7 +24,7 @@
   (layout/render "zipcode.html" {:endpoint "zipcode"}))
 
 (defn subjects-page [request]
-  (layout/render "book.html" {:subjects (db/get-all-subjects)}))
+  (layout/render "book_subjects.html" {:subjects (db/get-all-subjects)}))
 
 (defn sages-page [request]
   (let [subject (str (get-in request [:params :subject]))

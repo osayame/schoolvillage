@@ -2,10 +2,12 @@
 
 {% block top-section %}
 
-<div class="col-sm-6 col-sm-offset-3">
-	<div class="feature bordered text-center">
-		<h4>We ain't got no tutors for ya'!</h4>
-	</div>
-</div>
+<h4>We have no tutors in your area. Enter your information below, and we will inform you when we do.</h4>
 
+<form class="text-left">
+	<input type="text" name="first_name" placeholder="Diana" required/>
+	<input type="text" name="last_name" placeholder="Prince" required />
+	<input type="text" name="email" placeholder="wonderwoman@justiceleague.org" required />
+	<input type="submit" value="Keep Me Inform" />
+</form>
 {%endblock%}
