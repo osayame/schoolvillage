@@ -43,8 +43,7 @@
                             </h4>
                         </a>
                         <hr>
-                        {{sage.biography}}
-                        <br/>
+                        <p>{{sage.biography|shorten|safe}}...</p>
                         <br/>
 
                         <a class="btn btn-sm" href="/{{sage.url}}">Read More</a>
