@@ -9,6 +9,7 @@
             {% for user in sages %}
             <a href="/dbadmin/edit/{{user.id}}" class="list-group-item">
                 <span class="badge">view</span>
+                <span class="badge">{{user.status}}</span>
                 <i class="fa fa-fw fa-flag-o"></i> {{user.first_name}} {{user.last_name}}
             </a>
             {% endfor %}

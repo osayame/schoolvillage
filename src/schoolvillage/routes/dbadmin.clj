@@ -74,5 +74,4 @@
 
 (defroutes admin-routes
   (context "/dbadmin" [] dbadmin-routes)
-  (route/not-found (layout/error-page {:status "404"}))
   )

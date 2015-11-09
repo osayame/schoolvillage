@@ -35,6 +35,7 @@
 (defn profile-page [request]
   (let [user (db/get-user-by-url (get-in request [:params :sage]))]
     (if (some? user)
+      (layout/render "sage-profile.html" {:user user})
       (layout/render "sage-profile.html" {:user user}))))
 
 (defn add-tutor [request]
@@ -50,14 +51,16 @@
   (route/resources "/")
   (POST "/submit" [] add-tutor)
   (POST "/zipcode" [] zipcode-route)
+
   (GET "/" [] (home-page))
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
   (GET "/apply" [] (apply-page))
   (GET "/subjects" [] subjects-page)
+
   (GET "/book/:subject" [] sages-page)
   (GET "/book" [] (book-page))
   (GET "/thanks" [] (thanks-page))
+      (GET "/:sage" [] profile-page)
 
-  (GET "/:sage" [] profile-page)
   )

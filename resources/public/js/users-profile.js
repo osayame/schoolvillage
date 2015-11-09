@@ -45,6 +45,10 @@ $(document).ready(function() {
     });
 
     $(function() {
+        if (!document.getElementById('state')){
+            return;
+        }
+        
         var id = $('#user_id').val();
         var url = "/dbadmin/state/" + id;
 
