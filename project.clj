@@ -19,6 +19,7 @@
                  [buddy "0.7.2"]
 
                  [http-kit "2.1.19"]
+                 [clj-http "2.0.0"]
 
                  [metosin/ring-middleware-format "0.6.0"]
                  [metosin/ring-http-response "0.6.5"]

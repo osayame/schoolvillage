@@ -1,6 +1,7 @@
 (ns schoolvillage.routes.home
   (:require [schoolvillage.db.core :as db :refer :all]
             [schoolvillage.layout :as layout]
+            [schoolvillage.utilities :refer :all]
             [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.util.http-response :refer [ok]]
@@ -35,7 +36,6 @@
 (defn profile-page [request]
   (let [user (db/get-user-by-url (get-in request [:params :sage]))]
     (if (some? user)
-      (layout/render "sage-profile.html" {:user user})
       (layout/render "sage-profile.html" {:user user}))))
 
 (defn add-tutor [request]
@@ -51,7 +51,9 @@
   (route/resources "/")
   (POST "/submit" [] add-tutor)
   (POST "/zipcode" [] zipcode-route)
-
+  (POST "/subscribe" {params :params}
+    (subscribe-mailchimp (:first_name params) (:last_name params) (:email params) "40cb9196d7")
+    (response/redirect "/"))
   (GET "/" [] (home-page))
   (GET "/dbadmin" [] (response/redirect "/dbadmin/"))
   (GET "/about" [] (about-page))
