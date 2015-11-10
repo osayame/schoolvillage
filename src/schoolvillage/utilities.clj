@@ -47,14 +47,17 @@
 (defn strip-symbol [string sym]
   (clojure.string/replace string sym ""))
 
-(defn subscribe-mailchimp [fname lname email list-id]
-  (client/post "https://us11.api.mailchimp.com/2.0/lists/subscribe.json"
+(defn subscribe-mailchimp [fname lname email list-id groups]
+  (println (client/post "https://us11.api.mailchimp.com/2.0/lists/subscribe.json"
                {:content-type :json
                 :throw-exceptions false
                 :body (generate-string
                         {:apikey "927d2e12be55ebe1affe340c20517849-us11"
                          :id list-id
+                         :replace_interests false
                          :double_optin false
                          :email {:email email}
-                         :merge_vars {:fname fname :lname lname}
-                         })}))
+                         :merge_vars {:fname fname :lname lname
+                                      :groupings
+                                      [{:groups groups}]}
+                         })})))
