@@ -69,9 +69,9 @@
   )
 
 (defn admin? [name pass]
-  (and (= name "osa")
-       (= pass "osa")))
+  (and (= name "admin")
+       (= pass "sage12@@")))
 
 (defroutes admin-routes
-  (context "/dbadmin" [] dbadmin-routes)
+  (context "/dbadmin" [] (wrap-basic-authentication dbadmin-routes admin?))
   )

@@ -48,22 +48,22 @@ $(document).ready(function() {
         if (!document.getElementById('state')){
             return;
         }
-        
-        var id = $('#user_id').val();
-        var url = "/dbadmin/state/" + id;
 
-        $.get(url, function( data ) {
+        else {
+            var id = $('#user_id').val();
+            var url = "/dbadmin/state/" + id;
 
-        })
-        .done (function(data) {
-            var element = document.getElementById('state');
-            element.value = data;
-        })
-        .error (function(xhr) {
-          console.log(xhr.responseText);
-      })
+            $.get(url, function( data ) {
 
-        
+            })
+            .done (function(data) {
+                var element = document.getElementById('state');
+                element.value = data;
+            })
+            .error (function(xhr) {
+              console.log(xhr.responseText);
+          });
+        }
     })
 
 });
