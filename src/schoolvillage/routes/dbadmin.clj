@@ -16,7 +16,6 @@
   (.contains (:subjects user) (:id subject)))
 
 (defn home-page []
-  (println "routing to dbadmin home")
   (layout/render "dbadmin/home.html" {:flagged (db/get-flagged-users)
                                       :pending (db/get-pending-users)
                                       :recent (db/get-recent-users)}))

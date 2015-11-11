@@ -38,8 +38,9 @@
       (layout/render "sage-profile.html" {:user user}))))
 
 (defn add-tutor [request]
-  (db/add-user (get-in request [:params]))
-  (response/redirect "/thanks"))
+  (try
+    (db/add-user (get-in request [:params]))
+    (finally (response/redirect "/"))))
 
 (defn get-state-route [request]
   (str (:state
