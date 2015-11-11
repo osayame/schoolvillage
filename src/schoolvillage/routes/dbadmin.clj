@@ -51,11 +51,6 @@
 (defn sages-route [request]
   (layout/render "dbadmin/sages.html" {:sages (db/get-all-users)}))
 
-(defn get-state-route [request]
-  (str (:state
-        (db/get-user
-         (Integer. (get-in request [:params :id]))))))
-
 (defroutes dbadmin-routes
   (GET "/" [] (home-page))
   (GET "/edit/:id" [] edit-route)
@@ -65,7 +60,6 @@
   (GET "/approve/:id" [] edit-route)
   (POST "/approve/:id" [] approve-route)
   (GET "/sages" [] sages-route)
-  (GET "/state/:id" [] get-state-route)
   )
 
 (defn admin? [name pass]

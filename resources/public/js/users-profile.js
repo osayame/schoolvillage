@@ -45,13 +45,13 @@ $(document).ready(function() {
     });
 
     $(function() {
-        if (!document.getElementById('state')){
+        if (!document.getElementById('state') || !$('#user_id').length > 0){
             return;
         }
 
         else {
             var id = $('#user_id').val();
-            var url = "/dbadmin/state/" + id;
+            var url = "/state/" + id;
 
             $.get(url, function( data ) {
 
