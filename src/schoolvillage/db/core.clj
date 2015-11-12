@@ -3,7 +3,8 @@
             [clojure.java.jdbc :as jdbc]
             [conman.core :as conman]
             [environ.core :refer [env]]
-            [clojure.walk :refer :all])
+            [clojure.walk :refer :all]
+            [clj-http.client :as client]) ;; for making http requests
   (:import org.postgresql.util.PGobject
            org.postgresql.jdbc4.Jdbc4Array
            clojure.lang.IPersistentMap
@@ -54,6 +55,21 @@
 
 (defn get-sages-by-subject [subject & [zip]]
   (select-users-by-subject {:subject subject :zipcode (or zip "")}))
+
+;; Generate a url for a new user
+(defn generate-url [params]
+  (let [url (str (subs (get params :first_name) 0 1) (get params :last_name))
+        old_url (last (get-similar-urls {:url url}))]
+     (if (old_url)
+       (str url (+ (Integer. (re-find #"\d+" (subs old_url (count url) ))) 1) )
+       (str url "1")
+       ) ))
+
+;; Get a json list of nearby zip codes
+(defn get-nearby-zipcodes [zip]
+  (:body
+    (client/get "https://www.zipwise.com/webservices/radius.php"
+                {:query-params {"key" "xwmei9wzeu7zhpja", "zip" zip, "radius" "5", "format" "json"}})))
 
 (defn set-new-status [id status]
   (update-status<! {:id id :status (str status)}))
