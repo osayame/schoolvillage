@@ -32,6 +32,7 @@
                  [org.webjars/jquery "2.1.4"]
                  [migratus "0.8.7"]
                  [conman "0.2.1"]
+                 [cheshire "5.5.0"]
                  [org.postgresql/postgresql "9.4-1203-jdbc41"]
                  [org.immutant/web "2.1.0"]]
 

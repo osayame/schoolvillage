@@ -49,7 +49,7 @@ VALUES (
 -- name: get-similar-urls
 -- Returns a list of urls similar to some string
 SELECT url FROM users
-WHERE url LIKE (str :url "%")
+WHERE url LIKE :url
 
 -- name: update-user<!
 -- Updates a single user
@@ -127,7 +127,6 @@ WHERE id=:id AND NOT subjects @> ARRAY[(select id from subjects where name=:subj
 select * from users
 where subjects @> ARRAY[(select id from subjects where name=:subject)]
 AND status = 'Approved'
-AND zip = :zipcode
 
 -----
 

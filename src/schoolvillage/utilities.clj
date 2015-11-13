@@ -61,3 +61,13 @@
                                       :groupings
                                       [{:groups groups}]}
                          })})))
+
+(defn get-zipwise-data [zip radius]
+  (:results (parse-string
+    (:body
+      (client/get "https://www.zipwise.com/webservices/radius.php"
+        {:query-params {"key" "xwmei9wzeu7zhpja", "zip" (str zip), "radius" (str radius), "format" "json"}})) true)))
+
+(defn get-nearby-zipcodes [zip radius]
+  (mapv #(get % :zip) (get-zipwise-data zip radius)))
+

@@ -1,5 +1,6 @@
 (ns schoolvillage.db.core
-  (:require [cheshire.core :refer [generate-string parse-string]]
+  (:require [schoolvillage.utilities :refer :all]
+            [cheshire.core :refer [generate-string parse-string]]
             [clojure.java.jdbc :as jdbc]
             [conman.core :as conman]
             [environ.core :refer [env]]
@@ -53,10 +54,18 @@
   (first (select-user-by-url {:url (str url)})))
 
 (defn get-sages-by-subject [subject & [zip]]
-  (select-users-by-subject {:subject subject :zipcode (or zip "")}))
+  (filter #(.contains (get-nearby-zipcodes (or zip "") 5) (:zip %) zip) (select-users-by-subject {:subject subject})))
 
 (defn set-new-status [id status]
   (update-status<! {:id id :status (str status)}))
+
+(defn generate-url [params]
+ (let [url (str (subs (get params :first_name) 0 1) (get params :last_name))
+       old_url (last (get-similar-urls {:url url}))]
+    (if (some? old_url)
+      (str url (+ (Integer. (re-find #"\d+" (subs old_url (count url) ))) 1) )
+      url
+      )))
 
 (def pool-spec
   {:adapter :postgresql
@@ -113,3 +122,11 @@
   (sql-value [value] (to-pg-json value))
   IPersistentVector
   (sql-value [value] (to-pg-json value)))
+
+(defn vec->arr [array-vector]
+  (.createArrayOf *conn* "varchar" (into-array String array-vector)))
+
+(extend-protocol jdbc/ISQLValue
+    clojure.lang.IPersistentVector
+    (sql-value [v]
+    (vec->arr v)))
