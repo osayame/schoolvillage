@@ -26,11 +26,16 @@
 (defn subjects-page [request]
   (layout/render "book_subjects.html" {:subjects (db/get-all-subjects)}))
 
+;;(defn sages-page [request]
+  ;;(let [subject (str (get-in request [:params :subject]))
+    ;;    zipcode (str (get-in request [:session :zipcode]))
+      ;;  sages (db/get-sages-by-subject subject zipcode)]
+    ;;(layout/render "book_sages.html" {:sages sages :subject subject})))
+
 (defn sages-page [request]
   (let [subject (str (get-in request [:params :subject]))
-        zipcode (str (get-in request [:session :zipcode]))
-        sages (db/get-sages-by-subject subject zipcode)]
-    (layout/render "book_sages.html" {:sages sages :subject subject})))
+        zipcode (str (get-in request [:session :zipcode]))]
+    (layout/render "book_sages.html" {:sages {} :subject subject})))
 
 (defn profile-page [request]
   (let [user (db/get-user-by-url (get-in request [:params :sage]))]
